@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Zennex</string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="unknown">Unknown</string>
+    <string name="list">List</string>
+    <string name="scaling">Scaling</string>
+    <string name="parsing">Parsing</string>
+    <string name="map">Map</string>
+</resources>

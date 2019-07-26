@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_list" android:icon="@drawable/ic_list" android:title="@string/list"/>
+    <item android:id="@+id/nav_scaling" android:icon="@drawable/ic_scaling" android:title="@string/scaling"/>
+    <item android:id="@+id/nav_parsing" android:icon="@drawable/ic_parsing" android:title="@string/parsing"/>
+    <item android:id="@+id/nav_map" android:icon="@drawable/ic_map" android:title="@string/map"/>
+
+</menu>
