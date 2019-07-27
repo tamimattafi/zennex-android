@@ -6,4 +6,5 @@
     <string name="scaling">Scaling</string>
     <string name="parsing">Parsing</string>
     <string name="map">Map</string>
+    <string name="save">Save</string>
 </resources>

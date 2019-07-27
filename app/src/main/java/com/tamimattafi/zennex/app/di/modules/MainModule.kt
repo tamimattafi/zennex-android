@@ -2,10 +2,9 @@ package com.tamimattafi.zennex.app.di.modules
 
 import androidx.fragment.app.FragmentManager
 import com.tamimattafi.zennex.MainActivity
-import com.tamimattafi.zennex.app.di.anotations.ActivityScoped
-import com.tamimattafi.zennex.app.di.anotations.FragmentScoped
+import com.tamimattafi.zennex.app.di.anotations.ActivityScope
+import com.tamimattafi.zennex.app.di.anotations.FragmentScope
 import com.tamimattafi.zennex.app.ui.fragments.main.MainFragment
-import com.tamimattafi.zennex.app.ui.fragments.main.MainPagerAdapter
 import com.tamimattafi.zennex.app.ui.fragments.main.list.ListFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.map.MapFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.parsing.ScalingFragment
@@ -21,34 +20,28 @@ import dagger.Provides
 @Module
 abstract class MainModule {
 
-
-
     @Module
     companion object {
 
-        @JvmStatic @FragmentScoped @Provides
-        fun provideListDao(applicationDatabase: ApplicationDatabase) : ListItemDao
-            = applicationDatabase.listDao()
-
-        @JvmStatic @FragmentScoped @Provides
+        @JvmStatic @FragmentScope @Provides
         fun provideListFragment() : ListFragment = ListFragment()
 
-        @JvmStatic @FragmentScoped @Provides
+        @JvmStatic @FragmentScope @Provides
         fun provideScalingFragment() : ScalingFragment = ScalingFragment()
 
-        @JvmStatic @FragmentScoped @Provides
+        @JvmStatic @FragmentScope @Provides
         fun provideParsingFragment() : ParsingFragment = ParsingFragment()
 
-        @JvmStatic @FragmentScoped @Provides
+        @JvmStatic @FragmentScope @Provides
         fun provideMapFragment() : MapFragment = MapFragment()
 
-        @JvmStatic @FragmentScoped @Provides
+        @JvmStatic @FragmentScope @Provides
         fun provideChildFragmentManager(mainFragment: MainFragment) : FragmentManager
             = mainFragment.childFragmentManager
 
     }
 
-    @ActivityScoped @Binds
+    @ActivityScope @Binds
     abstract fun bindNavigationManager(mainActivity: MainActivity) : NavigationContract.NavigationManager
 
 }

@@ -7,8 +7,8 @@ import io.reactivex.Flowable
 @Dao
 interface ListItemDao {
 
-    @Query("SELECT * FROM list ORDER BY lastModified DESC LIMIT :limit OFFSET :offset")
-    fun getPage(limit : Int, offset : Int) : Flowable<List<ListItem>>
+    @Query("SELECT * FROM list ORDER BY lastModified DESC")
+    fun getAllData() : Flowable<List<ListItem>>
 
     @Query("SELECT * FROM list WHERE id = :itemId")
     fun getItem(itemId : Int) : Flowable<ListItem>

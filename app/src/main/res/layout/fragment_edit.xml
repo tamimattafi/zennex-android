@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/toolbar_edit"/>
+    <androidx.core.widget.NestedScrollView
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TableLayout
+                android:padding="16dp"
+                android:stretchColumns="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout
+                    android:id="@+id/layout">
+                <com.tamimattafi.zennex.app.ui.custom.views.FormEditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:gravity="center"
+                    android:weightSum="2"
+            android:orientation="horizontal"
+            >
+
+                <com.google.android.material.button.MaterialButton
+                        app:icon="@drawable/ic_save"
+                        app:iconGravity="textStart"
+                        android:id="@+id/save"
+                        android:text="@string/save"
+                        style="@style/MaterialButtonAccent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                <com.google.android.material.button.MaterialButton
+                        app:icon="@drawable/ic_cancel"
+                        app:iconGravity="textStart"
+                        android:id="@+id/discard"
+                        android:text="@string/save"
+                        style="@style/MaterialButtonRed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </TableLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
