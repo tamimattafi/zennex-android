@@ -48,26 +48,26 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
     override fun requestSlideLeftScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
             setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-            add(rootId, fragment).addToBackStack(fragment.name)
+            add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
     override fun requestSlideRightScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
             setCustomAnimations(R.anim.pop_enter, R.anim.pop_exit, R.anim.enter, R.anim.exit)
-            add(rootId, fragment).addToBackStack(fragment.name)
+            add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
 
     override fun requestFadeInScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-            add(rootId, fragment).addToBackStack(fragment.name)
+            add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
 
     override fun requestAttachScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
-            add(rootId, fragment).addToBackStack(fragment.name)
+            add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
 

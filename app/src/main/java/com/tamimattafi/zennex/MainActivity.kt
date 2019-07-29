@@ -3,6 +3,7 @@ package com.tamimattafi.zennex
 import android.os.Bundle
 import com.tamimattafi.zennex.app.ui.fragments.main.MainFragment
 import com.tamimattafi.zennex.app.ui.global.NavigationActivity
+import javax.inject.Inject
 
 class MainActivity : NavigationActivity() {
 

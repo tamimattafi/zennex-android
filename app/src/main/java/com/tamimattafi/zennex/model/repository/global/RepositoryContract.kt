@@ -7,18 +7,28 @@ import io.reactivex.Flowable
 interface RepositoryContract {
 
     interface Base<T> : ReadCallback<T>, WriteCallback, FailureCallback<String> {
+        var currentItemCount : Int
+        var paginationSize : Int
         fun get(id : Int)
         fun set(item : T)
         fun delete(item: T)
         fun update(item: T)
-        fun getData()
+        fun getNextPage()
         fun stopListening()
+        fun refresh()
 
         abstract class BaseRepository<T> : Base<T> {
+            override var currentItemCount: Int = 0
             override var onListSuccess: ((it: Flowable<List<T>>) -> Unit)? = null
             override var onItemSuccess: ((Flowable<T>) -> Unit)? = null
             override var onWriteSuccess: ((it: Completable) -> Unit)? = null
             override var onFailure: ((it: String) -> Unit)? = null
+
+
+            override fun refresh() {
+                stopListening()
+                currentItemCount = 0
+            }
 
 
             override fun stopListening() {

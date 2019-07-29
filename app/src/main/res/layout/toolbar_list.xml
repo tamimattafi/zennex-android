@@ -2,10 +2,12 @@
 <com.google.android.material.appbar.AppBarLayout
         android:background="@color/colorForeground"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:overScrollMode="always"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.tamimattafi.zennex.app.ui.custom.views.BaseToolbar
-            android:id="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize">
         <RelativeLayout

@@ -5,7 +5,7 @@ import com.tamimattafi.zennex.app.ui.global.NavigationContract
 
 class ScalingFragment : NavigationContract.NavigationFragment() {
 
-    override var name: String = "fragment-scaling"
+    override var fragmentName: String = "fragment-scaling"
     override val layoutId: Int = R.layout.fragment_scaling
 
 }

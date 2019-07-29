@@ -5,7 +5,7 @@ import com.tamimattafi.zennex.app.ui.global.NavigationContract
 
 class ParsingFragment : NavigationContract.NavigationFragment() {
 
-    override var name: String = "fragment-parsing"
+    override var fragmentName: String = "fragment-parsing"
     override val layoutId: Int = R.layout.fragment_parsing
 
 }

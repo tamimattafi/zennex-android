@@ -1,6 +1,8 @@
 package com.tamimattafi.zennex.app.ui.global
 
 import android.content.Intent
+import com.tamimattafi.zennex.utils.AppUtils
+import com.tamimattafi.zennex.utils.KeyboardUtils
 import javax.inject.Inject
 
 
@@ -21,7 +23,12 @@ interface NavigationContract {
         @Inject
         lateinit var navigationManager : NavigationManager
 
-        abstract var name : String
+        abstract var fragmentName : String
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            KeyboardUtils.hide(context!!)
+        }
     }
 
     interface BackPressController {

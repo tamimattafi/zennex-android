@@ -25,6 +25,8 @@
     </style>
 
     <style name="MaterialButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="iconTint">@color/colorForeground</item>
+        <item name="android:textColor">@color/colorForeground</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:padding">10dp</item>
         <item name="android:textSize">14sp</item>

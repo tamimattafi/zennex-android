@@ -5,7 +5,7 @@ import com.tamimattafi.zennex.app.ui.global.NavigationContract
 
 class MapFragment : NavigationContract.NavigationFragment() {
 
-    override var name: String = "fragment-map"
+    override var fragmentName: String = "fragment-map"
     override val layoutId: Int = R.layout.fragment_map
 
 

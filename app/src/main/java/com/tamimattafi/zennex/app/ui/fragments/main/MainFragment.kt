@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class MainFragment : NavigationContract.NavigationFragment() {
 
-    override var name: String = "fragment-main"
+    override var fragmentName: String = "fragment-main"
     override val layoutId: Int = R.layout.fragment_main
 
     @Inject

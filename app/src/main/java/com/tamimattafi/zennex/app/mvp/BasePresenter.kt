@@ -1,7 +1,7 @@
-package com.tamimattafi.zennex.app.ui.global
+package com.tamimattafi.zennex.app.mvp
 
 
-abstract class BasePresenter<V> protected constructor(protected val view: V) {
+abstract class BasePresenter<V> protected constructor(open val view: V) {
 
     protected var isViewDestroyed = false
 

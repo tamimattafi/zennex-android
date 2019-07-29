@@ -1,13 +1,19 @@
 package com.tamimattafi.zennex.model.repository.list
 
+import android.util.Log
 import com.tamimattafi.zennex.model.ListItem
 import com.tamimattafi.zennex.model.repository.global.RepositoryContract
+import com.tamimattafi.zennex.model.ApplicationDatabase
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ListRepository @Inject constructor() : RepositoryContract.Base.BaseRepository<ListItem>() {
+class ListRepository @Inject constructor(private val database: ApplicationDatabase) : RepositoryContract.Base.BaseRepository<ListItem>() {
+
+    override var paginationSize = 48
 
     override fun get(id: Int) {
-        ItemAsync().apply {
+        ItemAsync(database.listDao()).apply {
             onComplete = {
                 onItemSuccess?.let { function ->
                     function(it)
@@ -30,23 +36,31 @@ class ListRepository @Inject constructor() : RepositoryContract.Base.BaseReposit
     }
 
     private fun setUpEditAsync(type : Int, item : ListItem) {
-        EditAsync(type).apply {
+        EditAsync(database.listDao(), type).apply {
             onComplete = {
-                onWriteSuccess?.let { function ->
-                    function(it)
-                }
+                it.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete {
+                        onWriteSuccess?.let { function ->
+                            function(it)
+                        }
+                    }.doOnError { throwable ->
+                        onFailure?.let {function ->
+                            function(throwable.message!!)
+                        }
+                    }.subscribe()
             }
         }.execute(item)
     }
 
-    override fun getData() {
-        ListAsync().apply {
+    override fun getNextPage() {
+        ListAsync(database.listDao()).apply {
             onComplete = {
                 onListSuccess?.let { function ->
                     function(it)
                 }
             }
-        }.execute()
+        }.execute(Pair(paginationSize, currentItemCount))
     }
 
 

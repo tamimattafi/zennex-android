@@ -15,7 +15,7 @@ abstract class ApplicationModule {
     @Module
     companion object {
         @JvmStatic @Singleton @Provides
-        fun provideListDatabase(context: Context) : ApplicationDatabase
+        fun provideApplicationDatabase(context: Context) : ApplicationDatabase
             = Room.databaseBuilder(context, ApplicationDatabase::class.java, ApplicationDatabase.NAME)
             .fallbackToDestructiveMigrationOnDowngrade()
             .build()

@@ -10,19 +10,15 @@ import com.tamimattafi.zennex.app.ui.fragments.main.scaling.ParsingFragment
 import com.tamimattafi.zennex.app.ui.global.NavigationContract
 import javax.inject.Inject
 
-class MainPagerAdapter @Inject constructor(fragmentManager: FragmentManager,
-                                           listFragment: ListFragment,
-                                           scalingFragment: ScalingFragment,
-                                           parsingFragment: ParsingFragment,
-                                           mapFragment: MapFragment)
+class MainPagerAdapter @Inject constructor(fragmentManager: FragmentManager)
     : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val fragments: List<NavigationContract.NavigationFragment>
             = arrayListOf(
-                listFragment,
-                scalingFragment,
-                parsingFragment,
-                mapFragment
+                ListFragment(),
+                ScalingFragment(),
+                ParsingFragment(),
+                MapFragment()
             )
 
     override fun getItem(position: Int): Fragment {

@@ -7,4 +7,18 @@
     <string name="parsing">Parsing</string>
     <string name="map">Map</string>
     <string name="save">Save</string>
+    <string name="no_connection">No Connection</string>
+    <string name="device_not_connected">Your device is not connected to the internet</string>
+    <string name="refresh">Refresh</string>
+    <string name="create">Create</string>
+    <string name="no_data">No Data</string>
+    <string name="no_data_yet">You seem to have no data yet, do you want to create some?</string>
+    <string name="something_went_wrong_internet_connection">Something went wrong, please check your internet connection
+        and try again
+    </string>
+    <string name="try_again">Try Again</string>
+    <string name="add_item">Add Item</string>
+    <string name="discard">Discard</string>
+    <string name="name">Name</string>
+    <string name="this_field_is_required">This field is required</string>
 </resources>

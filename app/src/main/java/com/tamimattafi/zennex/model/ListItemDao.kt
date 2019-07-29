@@ -7,10 +7,10 @@ import io.reactivex.Flowable
 @Dao
 interface ListItemDao {
 
-    @Query("SELECT * FROM list ORDER BY lastModified DESC")
-    fun getAllData() : Flowable<List<ListItem>>
+    @Query("SELECT * FROM list_items ORDER BY lastModified DESC LIMIT :limit OFFSET :offset")
+    fun getAllData(limit : Int, offset : Int) : Flowable<List<ListItem>>
 
-    @Query("SELECT * FROM list WHERE id = :itemId")
+    @Query("SELECT * FROM list_items WHERE id = :itemId")
     fun getItem(itemId : Int) : Flowable<ListItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
