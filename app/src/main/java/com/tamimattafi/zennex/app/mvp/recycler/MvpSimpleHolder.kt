@@ -11,10 +11,23 @@ abstract class MvpSimpleHolder(itemView : View) : RecyclerView.ViewHolder(itemVi
     override var listener: MvpRecyclerContract.Listener? = null
         set(value) {
             field = value
-            itemView.setOnClickListener {
-                value?.onHolderClick(listPosition, adapterPosition, getId())
+            onListenerSet(value)
+        }
+
+    open fun onListenerSet(listener: MvpRecyclerContract.Listener?) {
+        with(itemView) {
+            setOnClickListener {
+                listener?.onHolderClick(listPosition, adapterPosition, this@MvpSimpleHolder.getId())
+            }
+
+            setOnLongClickListener {
+                listener?.onHolderLongClick(listPosition, adapterPosition, this@MvpSimpleHolder.getId())
+                true
             }
         }
+    }
+
+
 
     open fun getId(): Int? = null
 

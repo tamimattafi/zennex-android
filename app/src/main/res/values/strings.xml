@@ -18,7 +18,15 @@
     </string>
     <string name="try_again">Try Again</string>
     <string name="add_item">Add Item</string>
+    <string name="edit_item">Edit Item</string>
     <string name="discard">Discard</string>
     <string name="name">Name</string>
     <string name="this_field_is_required">This field is required</string>
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel_action">Cancel Action</string>
+    <string name="do_you_really_want_to_go_back">Do you really want to go back?</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

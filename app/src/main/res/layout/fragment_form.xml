@@ -17,6 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout
+                    app:hintTextColor="@color/colorGrayLight"
                     android:layout_width="match_parent"
                     android:id="@+id/nameLayout"
                     android:layout_height="wrap_content">
@@ -37,7 +38,7 @@
                     android:orientation="horizontal"
             >
                 <com.google.android.material.button.MaterialButton
-                        android:layout_margin="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         app:icon="@drawable/ic_cancel"
                         app:iconGravity="textStart"
@@ -45,9 +46,10 @@
                         android:text="@string/discard"
                         style="@style/MaterialButtonRed"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"/>
                 <com.google.android.material.button.MaterialButton
-                        android:layout_margin="8dp"
+                        android:layout_marginStart="8dp"
                         app:icon="@drawable/ic_save"
                         android:layout_weight="1"
                         app:iconGravity="textStart"
@@ -55,7 +57,8 @@
                         android:text="@string/save"
                         style="@style/MaterialButtonAccent"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

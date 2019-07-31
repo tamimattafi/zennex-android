@@ -21,6 +21,7 @@ abstract class ApplicationModule {
             .build()
     }
 
-    @Singleton @Binds
+    @Singleton
+    @Binds
     abstract fun bindContext(application : DaggerApplication) : Context
 }

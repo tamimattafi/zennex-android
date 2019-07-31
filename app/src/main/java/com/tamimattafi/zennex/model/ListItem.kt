@@ -6,8 +6,8 @@ import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerContract
 
 @Entity(tableName = "list_items")
 data class ListItem(
-    @PrimaryKey(autoGenerate = true) val id : Int? = null,
-    var name : String = "",
+    @PrimaryKey(autoGenerate = true) var id: Int? = null,
+    var name: String = "Unnamed",
     var lastModified : Long = 0,
     var isChecked : Boolean = true
 ) : MvpRecyclerContract.Object<Int> {

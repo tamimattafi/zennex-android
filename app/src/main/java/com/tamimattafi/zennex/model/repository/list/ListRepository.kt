@@ -1,23 +1,21 @@
 package com.tamimattafi.zennex.model.repository.list
 
-import android.util.Log
+import com.tamimattafi.zennex.app.di.scopes.ListScope
 import com.tamimattafi.zennex.model.ListItem
+import com.tamimattafi.zennex.model.ListItemDao
 import com.tamimattafi.zennex.model.repository.global.RepositoryContract
-import com.tamimattafi.zennex.model.ApplicationDatabase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ListRepository @Inject constructor(private val database: ApplicationDatabase) : RepositoryContract.Base.BaseRepository<ListItem>() {
+@ListScope
+class ListRepository @Inject constructor(private val listItemDao: ListItemDao) :
+    RepositoryContract.Base.BaseRepository<ListItem>() {
 
     override var paginationSize = 48
 
     override fun get(id: Int) {
-        ItemAsync(database.listDao()).apply {
+        ItemAsync(listItemDao).apply {
             onComplete = {
-                onItemSuccess?.let { function ->
-                    function(it)
-                }
+                onReadComplete?.invoke(it)
             }
         }.execute(id)
     }
@@ -36,29 +34,17 @@ class ListRepository @Inject constructor(private val database: ApplicationDataba
     }
 
     private fun setUpEditAsync(type : Int, item : ListItem) {
-        EditAsync(database.listDao(), type).apply {
+        EditAsync(listItemDao, type).apply {
             onComplete = {
-                it.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnComplete {
-                        onWriteSuccess?.let { function ->
-                            function(it)
-                        }
-                    }.doOnError { throwable ->
-                        onFailure?.let {function ->
-                            function(throwable.message!!)
-                        }
-                    }.subscribe()
+                onWriteComplete?.invoke(it)
             }
         }.execute(item)
     }
 
     override fun getNextPage() {
-        ListAsync(database.listDao()).apply {
+        ListAsync(listItemDao).apply {
             onComplete = {
-                onListSuccess?.let { function ->
-                    function(it)
-                }
+                onListReadComplete?.invoke(it)
             }
         }.execute(Pair(paginationSize, currentItemCount))
     }

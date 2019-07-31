@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@drawable/background_dialog"
+        android:paddingTop="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.tamimattafi.zennex.app.ui.custom.views.DialogRecycler
+            android:background="@color/colorBackground"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/recycler"/>
+    <com.google.android.material.button.MaterialButton
+            android:layout_gravity="end"
+            app:icon="@drawable/ic_cancel"
+            app:iconGravity="textStart"
+            android:layout_margin="8dp"
+            app:iconTint="@color/colorGrayLight"
+            android:textColor="@color/colorGrayLight"
+            style="@style/MaterialTextButton"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:text="@string/close"
+            android:layout_width="wrap_content"/>
+
+</LinearLayout>

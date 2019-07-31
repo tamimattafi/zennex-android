@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@drawable/background_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/label"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/hint"
+                android:layout_width="match_parent"/>
+    </ScrollView>
+    <com.google.android.material.button.MaterialButton
+            android:layout_gravity="end"
+            app:icon="@drawable/ic_cancel"
+            app:iconGravity="textStart"
+            android:layout_margin="8dp"
+            app:iconTint="@color/colorGrayLight"
+            android:textColor="@color/colorGrayLight"
+            style="@style/MaterialTextButton"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:text="@string/close"
+            android:layout_width="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:background="@drawable/background_dialog"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+    <TextView
+            android:padding="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/colorGrayDark"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/label"/>
+    <TextView
+            android:textColor="@color/colorGrayLight"
+            android:padding="18dp"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/hint"
+            android:layout_width="match_parent"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout2">
+        <com.google.android.material.button.MaterialButton
+                app:icon="@drawable/ic_cancel"
+                app:iconGravity="textStart"
+                android:layout_margin="8dp"
+                app:iconTint="@color/colorGrayLight"
+                android:textColor="@color/colorGrayLight"
+                style="@style/MaterialTextButton"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancel"
+                android:text="@string/cancel"
+                android:layout_weight="1"
+                android:layout_width="0dp"/>
+        <com.google.android.material.button.MaterialButton
+                app:iconGravity="textStart"
+                style="@style/MaterialButtonAccent"
+                app:icon="@drawable/ic_save"
+                android:layout_margin="8dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/confirm"
+                android:text="@string/confirm"
+                android:layout_weight="1"
+                android:layout_width="0dp"/>
+    </LinearLayout>
+
+</LinearLayout>

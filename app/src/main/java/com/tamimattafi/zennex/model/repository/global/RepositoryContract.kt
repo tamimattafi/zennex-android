@@ -3,10 +3,11 @@ package com.tamimattafi.zennex.model.repository.global
 import android.os.AsyncTask
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Maybe
 
 interface RepositoryContract {
 
-    interface Base<T> : ReadCallback<T>, WriteCallback, FailureCallback<String> {
+    interface Base<T> : RepositoryCallBack<T> {
         var currentItemCount : Int
         var paginationSize : Int
         fun get(id : Int)
@@ -19,11 +20,10 @@ interface RepositoryContract {
 
         abstract class BaseRepository<T> : Base<T> {
             override var currentItemCount: Int = 0
-            override var onListSuccess: ((it: Flowable<List<T>>) -> Unit)? = null
-            override var onItemSuccess: ((Flowable<T>) -> Unit)? = null
-            override var onWriteSuccess: ((it: Completable) -> Unit)? = null
-            override var onFailure: ((it: String) -> Unit)? = null
 
+            override var onListReadComplete: ((it: Flowable<List<T>>) -> Unit)? = null
+            override var onWriteComplete: ((Completable) -> Unit)? = null
+            override var onReadComplete: ((it: Maybe<T>) -> Unit)? = null
 
             override fun refresh() {
                 stopListening()
@@ -32,10 +32,9 @@ interface RepositoryContract {
 
 
             override fun stopListening() {
-                onListSuccess = null
-                onItemSuccess = null
-                onWriteSuccess = null
-                onFailure = null
+                onListReadComplete = null
+                onWriteComplete = null
+                onReadComplete = null
             }
         }
 
@@ -47,7 +46,7 @@ interface RepositoryContract {
 
         override fun onPostExecute(result: RESULT) {
             super.onPostExecute(result)
-            onComplete?.let { it(result) }
+            onComplete?.invoke(result)
         }
     }
 
@@ -55,16 +54,9 @@ interface RepositoryContract {
         var onComplete : ((it : RESULT) -> Unit)?
     }
 
-    interface ReadCallback<T> {
-        var onItemSuccess : ((it : Flowable<T>) -> Unit)?
-        var onListSuccess : ((it : Flowable<List<T>>) -> Unit)?
-    }
-
-    interface WriteCallback {
-        var onWriteSuccess : ((it : Completable) -> Unit)?
-    }
-
-    interface FailureCallback<T> {
-        var onFailure : ((it : T) -> Unit)?
+    interface RepositoryCallBack<T> {
+        var onReadComplete: ((it: Maybe<T>) -> Unit)?
+        var onListReadComplete: ((it: Flowable<List<T>>) -> Unit)?
+        var onWriteComplete: ((Completable) -> Unit)?
     }
 }

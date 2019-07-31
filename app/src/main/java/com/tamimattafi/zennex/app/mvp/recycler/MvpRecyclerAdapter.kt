@@ -1,6 +1,5 @@
 package com.tamimattafi.zennex.app.mvp.recycler
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +7,6 @@ import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolder
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolderList
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.UnbindableHolder
-import com.tamimattafi.zennex.app.ui.fragments.main.list.ListContract
 import com.tamimattafi.zennex.utils.PhoneUtils
 
 abstract class MvpRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
@@ -137,7 +135,7 @@ abstract class MvpRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
             dataCount > 0 && headersCount > 0 && position in 0 until headersCount -> ITEM_HEADER
             dataCount > 0 && position in headersCount until dataCount + headersCount -> ITEM_MAIN
             dataCount > 0 && footersCount > 0 && position in dataCount until (dataCount + footersCount) -> ITEM_FOOTER
-            dataCount == 0 -> ITEM_NO_DATA
+            dataCount == 0 && allData -> ITEM_NO_DATA
             else -> ITEM_LOADING
         }
     }

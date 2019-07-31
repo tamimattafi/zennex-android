@@ -4,7 +4,12 @@ import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerContract
 
 interface ListContract {
 
-    interface Presenter : MvpRecyclerContract.Presenter<ListItemHolder>
+    interface Presenter : MvpRecyclerContract.Presenter<ListItemHolder> {
+        fun getItemName(listPosition: Int): String
+        fun switchItem(listPosition: Int)
+        fun deleteItem(listPosition: Int)
+    }
+
     interface View : MvpRecyclerContract.View<ListItemHolder>
 
     interface ListItemHolder : MvpRecyclerContract.Holder {

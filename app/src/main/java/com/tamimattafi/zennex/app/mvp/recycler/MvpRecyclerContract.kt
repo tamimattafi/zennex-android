@@ -32,7 +32,7 @@ interface MvpRecyclerContract {
     interface Listener {
         fun onHolderClick(listPosition: Int, adapterPosition : Int, itemId : Int?)
         fun onHolderLongClick(listPosition: Int, adapterPosition: Int, itemId: Int?)
-        fun onHolderAction(adapterPosition: Int, action : Int, itemId: Int?)
+        fun onHolderAction(listPosition: Int, adapterPosition: Int, action: Int, itemId: Int?)
     }
 
     interface ListenerHolder {

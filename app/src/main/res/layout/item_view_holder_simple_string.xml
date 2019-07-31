@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <View style="@style/HorizontalDivider"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:id="@+id/text"/>
+    <View style="@style/HorizontalDivider"/>
+</LinearLayout>
+
