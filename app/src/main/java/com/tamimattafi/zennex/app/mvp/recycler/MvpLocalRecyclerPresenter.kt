@@ -1,22 +1,22 @@
 package com.tamimattafi.zennex.app.mvp.recycler
 
 import com.tamimattafi.zennex.app.mvp.BasePresenter
-import com.tamimattafi.zennex.model.repository.global.RepositoryContract
+import com.tamimattafi.zennex.repository.global.RepositoryContract
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-abstract class MvpRecyclerPresenter<
+abstract class MvpLocalRecyclerPresenter<
         T : MvpRecyclerContract.Object<Int>,
         VIEW : MvpRecyclerContract.View<HOLDER>,
         HOLDER : MvpRecyclerContract.Holder>(
     override val view: VIEW,
-    protected val repository: RepositoryContract.Base<T>
-)
-    : BasePresenter<VIEW>(view), MvpRecyclerContract.Presenter<HOLDER> {
+    protected val repository: RepositoryContract.LocalBase<T>
+) : BasePresenter<VIEW>(view), MvpRecyclerContract.Presenter<HOLDER> {
 
     protected lateinit var data : Flowable<List<T>>
     protected var dataList : ArrayList<T> = ArrayList()
+
 
     override fun loadMoreRecyclerData(recycler: MvpRecyclerContract.RecyclerAdapter<HOLDER>) {
         with(recycler) {
@@ -34,28 +34,23 @@ abstract class MvpRecyclerPresenter<
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .doOnError {
                                     isLoading = false
+                                    view.showError(it.localizedMessage ?: it.toString())
                                 }.doOnNext { list ->
                                     isLoading = true
-                                    repository.currentItemCount = list.size
                                     dataList = ArrayList(list)
                                     setDataCount(dataList.size)
-                                    allData = list.isEmpty() || (dataList.size % paginationSize) != 0
+                                    allData = true
                                     isLoading = false
                                 }
                                 .subscribe()
                         }
                     }
 
-                }.getNextPage()
+                }.getData()
 
             }
 
         }
-    }
-
-    override fun refresh(recycler: MvpRecyclerContract.RecyclerAdapter<HOLDER>) {
-        repository.refresh()
-        loadMoreRecyclerData(recycler)
     }
 
     override fun onDestroy() {

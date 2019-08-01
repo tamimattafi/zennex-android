@@ -7,10 +7,9 @@ import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolder
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolderList
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.UnbindableHolder
-import com.tamimattafi.zennex.utils.PhoneUtils
 
-abstract class MvpRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
-    val presenter: MvpRecyclerContract.Presenter<HOLDER>,
+abstract class MvpLocalRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
+    open val presenter: MvpRecyclerContract.Presenter<HOLDER>,
     val listener: MvpRecyclerContract.Listener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     MvpRecyclerContract.RecyclerAdapter<HOLDER> {
@@ -46,20 +45,6 @@ abstract class MvpRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
         this.dataCount = dataCount
         notifyDataSetChanged()
         return true
-    }
-
-
-    override fun refresh() {
-        allData = false
-        isLoading = false
-        loadMore()
-    }
-
-    override fun tryAgain() {
-        allData = false
-        isLoading = false
-        notifyDataSetChanged()
-        presenter.refresh(this)
     }
 
     override fun getViewHolder(listPosition: Int): HOLDER?
@@ -104,21 +89,9 @@ abstract class MvpRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         with(LayoutInflater.from(parent.context)) {
-            return when {
-                viewType == ITEM_MAIN -> getItemHolder(parent)
-                viewType == ITEM_NO_DATA && !PhoneUtils.isConnected(parent.context) -> getNoDataHolder(
-                    parent,
-                    EmptyHolderList.NO_CONNECTION
-                )
-                viewType == ITEM_NO_DATA -> getNoDataHolder(parent, getNoDataHolderType())
-                viewType == ITEM_LOADING_ERROR -> EmptyHolder(
-                    EmptyHolderList.getItem(parent.context, EmptyHolderList.TRY_AGAIN),
-                    LayoutInflater.from(parent.context).inflate(
-                        R.layout.item_view_holder_bottom_error,
-                        parent,
-                        false
-                    )
-                )
+            return when (viewType) {
+                ITEM_MAIN -> getItemHolder(parent)
+                ITEM_NO_DATA -> getNoDataHolder(parent, getNoDataHolderType())
                 else -> UnbindableHolder(
                     inflate(
                         R.layout.item_view_holder_bottom_loading,

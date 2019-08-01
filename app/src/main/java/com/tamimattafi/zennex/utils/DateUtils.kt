@@ -20,6 +20,9 @@ object DateUtils {
 
     fun toString(unix: Long, pattern: String): String = toString(fromUnix(unix), pattern)
 
+    fun toString(string: String?, firstPattern: String, secondPattern: String) =
+        toString(fromString(string, firstPattern), secondPattern)
+
     fun fromString(string: String?, pattern: String): Date? {
         return if (string != null) {
             SimpleDateFormat(pattern, Locale.getDefault()).parse(string)

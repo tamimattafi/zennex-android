@@ -1,11 +1,11 @@
 package com.tamimattafi.zennex.app.ui.fragments.main.list.edit
 
+import com.tamimattafi.zennex.app.ui.fragments.main.list.ListContract
 import com.tamimattafi.zennex.app.ui.fragments.main.list.form.FormPresenter
-import com.tamimattafi.zennex.model.ListItem
-import com.tamimattafi.zennex.model.repository.global.RepositoryContract
+import com.tamimattafi.zennex.model.list.ListItem
 import javax.inject.Inject
 
-class EditPresenter @Inject constructor(view: EditContract.View, repository: RepositoryContract.Base<ListItem>) :
+class EditPresenter @Inject constructor(view: EditContract.View, repository: ListContract.Repository) :
     FormPresenter(view, repository), EditContract.Presenter {
 
     override fun setItemId(id: Int) {

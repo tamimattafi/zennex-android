@@ -40,12 +40,14 @@
             android:layout_alignParentRight="true"/>
     <TextView
             android:id="@+id/date"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/colorGrayLight"
             android:gravity="end"
-            android:layout_toStartOf="@id/checkbox"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/checkbox"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"/>
 </RelativeLayout>

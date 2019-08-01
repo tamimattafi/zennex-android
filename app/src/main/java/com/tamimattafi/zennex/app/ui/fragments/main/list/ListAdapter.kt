@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.di.scopes.ListScope
-import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerAdapter
-import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerContract
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolderList
 import javax.inject.Inject
 
 @ListScope
-class ListAdapter @Inject constructor(presenter: MvpRecyclerContract.Presenter<ListContract.ListItemHolder>, listener : MvpRecyclerContract.Listener) : MvpRecyclerAdapter<ListContract.ListItemHolder>(presenter, listener) {
+class ListAdapter @Inject constructor(presenter: ListContract.Presenter, listener: ListContract.View) :
+    ListContract.Adapter(presenter, listener) {
 
     override fun getItemHolder(parent: ViewGroup): RecyclerView.ViewHolder = ListItemHolder(
         LayoutInflater.from(parent.context).inflate(

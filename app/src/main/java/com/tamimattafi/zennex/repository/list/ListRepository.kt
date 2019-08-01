@@ -1,19 +1,18 @@
-package com.tamimattafi.zennex.model.repository.list
+package com.tamimattafi.zennex.repository.list
 
 import com.tamimattafi.zennex.app.di.scopes.ListScope
-import com.tamimattafi.zennex.model.ListItem
-import com.tamimattafi.zennex.model.ListItemDao
-import com.tamimattafi.zennex.model.repository.global.RepositoryContract
+import com.tamimattafi.zennex.app.ui.fragments.main.list.ListContract
+import com.tamimattafi.zennex.model.list.ListItem
+import com.tamimattafi.zennex.model.list.ListItemDao
 import javax.inject.Inject
 
 @ListScope
 class ListRepository @Inject constructor(private val listItemDao: ListItemDao) :
-    RepositoryContract.Base.BaseRepository<ListItem>() {
+    ListContract.Repository() {
 
-    override var paginationSize = 48
 
     override fun get(id: Int) {
-        ItemAsync(listItemDao).apply {
+        ListItemAsync(listItemDao).apply {
             onComplete = {
                 onReadComplete?.invoke(it)
             }
@@ -21,32 +20,32 @@ class ListRepository @Inject constructor(private val listItemDao: ListItemDao) :
     }
 
     override fun set(item: ListItem) {
-        setUpEditAsync(EditAsync.INSERT, item)
+        setUpEditAsync(ListEditAsync.INSERT, item)
     }
 
     override fun delete(item: ListItem) {
-        setUpEditAsync(EditAsync.DELETE, item)
+        setUpEditAsync(ListEditAsync.DELETE, item)
     }
 
 
     override fun update(item: ListItem) {
-        setUpEditAsync(EditAsync.UPDATE, item)
+        setUpEditAsync(ListEditAsync.UPDATE, item)
     }
 
     private fun setUpEditAsync(type : Int, item : ListItem) {
-        EditAsync(listItemDao, type).apply {
+        ListEditAsync(listItemDao, type).apply {
             onComplete = {
                 onWriteComplete?.invoke(it)
             }
         }.execute(item)
     }
 
-    override fun getNextPage() {
-        ListAsync(listItemDao).apply {
+    override fun getData() {
+        ListDataAsync(listItemDao).apply {
             onComplete = {
                 onListReadComplete?.invoke(it)
             }
-        }.execute(Pair(paginationSize, currentItemCount))
+        }.execute()
     }
 
 

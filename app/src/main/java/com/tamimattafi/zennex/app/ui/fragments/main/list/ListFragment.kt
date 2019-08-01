@@ -3,7 +3,6 @@ package com.tamimattafi.zennex.app.ui.fragments.main.list
 import android.os.Bundle
 import android.view.View
 import com.tamimattafi.zennex.R
-import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerContract
 import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerController
 import com.tamimattafi.zennex.app.ui.custom.dialogs.base.SelectionDialogContract
 import com.tamimattafi.zennex.app.ui.custom.dialogs.model.MenuItemData
@@ -19,14 +18,15 @@ import javax.inject.Inject
 
 class ListFragment : NavigationContract.NavigationFragment(), ListContract.View {
 
-    override var fragmentName: String = "fragment-map"
-    override val layoutId: Int = R.layout.fragment_list
-
     @Inject
     lateinit var presenter : ListContract.Presenter
 
     @Inject
-    lateinit var adapter : MvpRecyclerContract.RecyclerAdapter<ListContract.ListItemHolder>
+    lateinit var adapter: ListContract.Adapter
+
+    override var fragmentName: String = "fragment-map"
+    override val layoutId: Int = R.layout.fragment_list
+
 
     private val bottomDialog by lazy {
         MenuBottomSelectionDialog(context!!)
@@ -50,8 +50,6 @@ class ListFragment : NavigationContract.NavigationFragment(), ListContract.View 
         Actions.apply {
             when (action) {
                 ACTION_CREATE -> add.performClick()
-                ACTION_REFRESH -> adapter.refresh()
-                ACTION_TRY_AGAIN -> adapter.tryAgain()
                 ACTION_SWITCH -> presenter.switchItem(listPosition)
             }
         }

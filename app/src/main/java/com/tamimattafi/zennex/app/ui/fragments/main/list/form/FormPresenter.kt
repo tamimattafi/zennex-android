@@ -1,15 +1,15 @@
 package com.tamimattafi.zennex.app.ui.fragments.main.list.form
 
 import com.tamimattafi.zennex.app.mvp.BasePresenter
-import com.tamimattafi.zennex.model.ListItem
-import com.tamimattafi.zennex.model.repository.global.RepositoryContract
+import com.tamimattafi.zennex.model.list.ListItem
+import com.tamimattafi.zennex.repository.global.RepositoryContract
 import com.tamimattafi.zennex.utils.DateUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 abstract class FormPresenter constructor(
     override val view: FormContract.View,
-    val repository: RepositoryContract.Base<ListItem>
+    val repository: RepositoryContract.LocalBase<ListItem>
 ) : BasePresenter<FormContract.View>(view), FormContract.Presenter {
 
     var item: ListItem = ListItem()

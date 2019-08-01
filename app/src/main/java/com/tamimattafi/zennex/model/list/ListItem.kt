@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.model
+package com.tamimattafi.zennex.model.list
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

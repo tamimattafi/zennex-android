@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.app.ui.fragments.main.parsing
+package com.tamimattafi.zennex.app.ui.fragments.main.scaling
 
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.global.NavigationContract

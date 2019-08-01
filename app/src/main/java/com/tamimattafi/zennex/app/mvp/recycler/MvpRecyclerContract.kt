@@ -5,14 +5,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 interface MvpRecyclerContract {
 
-    interface RecyclerAdapter<HOLDER : Holder> : PagerRecycler,
-        TryAgain {
+    interface RecyclerAdapter<HOLDER : Holder> : PagerRecycler {
         var allData : Boolean
         var isLoading : Boolean
         var controller: RecyclerController<HOLDER>?
         fun getViewHolder(listPosition : Int) : HOLDER?
         fun setDataCount(dataCount : Int) : Boolean
-        fun refresh()
+    }
+
+    interface InternetRecyclerAdapter<HOLDER : Holder> : RecyclerAdapter<HOLDER>, Refresher {
+        var networkError: Boolean
     }
 
     interface RecyclerController<HOLDER : Holder> {
@@ -21,12 +23,13 @@ interface MvpRecyclerContract {
         fun getViewHolder(position : Int) : HOLDER?
     }
 
-    interface PagerRecycler {
-        fun loadMore()
+    interface Refresher {
+        fun refresh()
+        fun tryAgain()
     }
 
-    interface TryAgain {
-        fun tryAgain()
+    interface PagerRecycler {
+        fun loadMore()
     }
 
     interface Listener {
@@ -51,10 +54,17 @@ interface MvpRecyclerContract {
     interface Presenter<HOLDER : Holder> {
         fun bindViewHolder(holder: HOLDER)
         fun loadMoreRecyclerData(recycler : RecyclerAdapter<HOLDER>)
+    }
+
+    interface InternetPresenter<HOLDER : Holder> : Presenter<HOLDER> {
         fun refresh(recycler: RecyclerAdapter<HOLDER>)
     }
 
     interface View<HOLDER : Holder> : Listener{
         fun showError(message : String)
+    }
+
+    interface RefreshableView<HOLDER : Holder> : View<HOLDER> {
+        fun setRefreshing(refreshing: Boolean)
     }
 }

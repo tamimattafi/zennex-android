@@ -1,18 +1,19 @@
-package com.tamimattafi.zennex.model.repository.list
+package com.tamimattafi.zennex.repository.list
 
-import com.tamimattafi.zennex.model.ListItem
-import com.tamimattafi.zennex.model.repository.global.RepositoryContract
-import com.tamimattafi.zennex.model.ApplicationDatabase
-import com.tamimattafi.zennex.model.ListItemDao
+import com.tamimattafi.zennex.model.list.ListItem
+import com.tamimattafi.zennex.model.list.ListItemDao
+import com.tamimattafi.zennex.repository.ApplicationDatabase
+import com.tamimattafi.zennex.repository.global.RepositoryContract
 import io.reactivex.Completable
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
-class EditAsync(private val listDao : ListItemDao, private val actionType : Int) : RepositoryContract.Async<ListItem, Completable>() {
+class ListEditAsync(private val listDao: ListItemDao, private val actionType: Int) :
+    RepositoryContract.Async<ListItem, Completable>() {
 
     @Inject
     lateinit var database: ApplicationDatabase
 
+    @Throws(IllegalArgumentException::class)
     override fun doInBackground(vararg p0: ListItem): Completable {
         listDao.run {
             with(p0[0]) {

@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.model.repository.global
+package com.tamimattafi.zennex.repository.global
 
 import android.os.AsyncTask
 import io.reactivex.Completable
@@ -7,28 +7,17 @@ import io.reactivex.Maybe
 
 interface RepositoryContract {
 
-    interface Base<T> : RepositoryCallBack<T> {
-        var currentItemCount : Int
-        var paginationSize : Int
+    interface LocalBase<T> : LocalCallBack<T> {
         fun get(id : Int)
         fun set(item : T)
         fun delete(item: T)
         fun update(item: T)
-        fun getNextPage()
-        fun stopListening()
-        fun refresh()
+        fun getData()
 
-        abstract class BaseRepository<T> : Base<T> {
-            override var currentItemCount: Int = 0
-
+        abstract class LocalRepository<T> : LocalBase<T> {
             override var onListReadComplete: ((it: Flowable<List<T>>) -> Unit)? = null
             override var onWriteComplete: ((Completable) -> Unit)? = null
             override var onReadComplete: ((it: Maybe<T>) -> Unit)? = null
-
-            override fun refresh() {
-                stopListening()
-                currentItemCount = 0
-            }
 
 
             override fun stopListening() {
@@ -38,6 +27,23 @@ interface RepositoryContract {
             }
         }
 
+    }
+
+    interface InternetBase<T> : InternetCallBack<T> {
+        var paginationSize: Int
+        var currentCount: Int
+        fun refresh()
+        fun getData()
+
+        abstract class InternetRepository<T> : InternetBase<T> {
+            override var onListReadComplete: ((it: List<T>) -> Unit)? = null
+            override var onFailure: ((message: String) -> Unit)? = null
+            override var currentCount: Int = 0
+
+            override fun stopListening() {
+                onListReadComplete = null
+            }
+        }
     }
 
     abstract class Async<PARAMS, RESULT> : AsyncTask<PARAMS, Int, RESULT>(), CompleteCallback<RESULT> {
@@ -54,9 +60,16 @@ interface RepositoryContract {
         var onComplete : ((it : RESULT) -> Unit)?
     }
 
-    interface RepositoryCallBack<T> {
+    interface LocalCallBack<T> {
         var onReadComplete: ((it: Maybe<T>) -> Unit)?
         var onListReadComplete: ((it: Flowable<List<T>>) -> Unit)?
         var onWriteComplete: ((Completable) -> Unit)?
+        fun stopListening()
+    }
+
+    interface InternetCallBack<T> {
+        var onListReadComplete: ((it: List<T>) -> Unit)?
+        var onFailure: ((message: String) -> Unit)?
+        fun stopListening()
     }
 }
