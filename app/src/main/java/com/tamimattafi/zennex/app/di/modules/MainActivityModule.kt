@@ -1,13 +1,11 @@
 package com.tamimattafi.zennex.app.di.modules
 
+import android.app.Activity
 import com.tamimattafi.zennex.MainActivity
-import com.tamimattafi.zennex.app.ui.fragments.main.MainFragment
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import javax.inject.Singleton
 
 @Module
 abstract class MainActivityModule {
@@ -17,5 +15,8 @@ abstract class MainActivityModule {
 
     @Binds
     abstract fun bindNavigationManager(mainActivity: MainActivity) : NavigationContract.NavigationManager
+
+    @Binds
+    abstract fun bindActivity(mainActivity: MainActivity): Activity
 
 }

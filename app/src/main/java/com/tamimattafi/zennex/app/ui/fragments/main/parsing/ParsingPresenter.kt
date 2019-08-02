@@ -21,6 +21,8 @@ class ParsingPresenter @Inject constructor(
                     setDescription(description)
                     setDate(DateUtils.toString(time, Quote.TIME_PATTERN, DateUtils.UI_DATE_PATTERN))
                     setRatings(rating.toString())
+                    setNegativeRatings(rating < 0)
+
                 }
             }
     }

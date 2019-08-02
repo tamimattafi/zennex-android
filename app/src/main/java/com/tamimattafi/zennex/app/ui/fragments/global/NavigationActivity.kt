@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.app.ui.global
+package com.tamimattafi.zennex.app.ui.fragments.global
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,8 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContract.NavigationManager {
 
-    abstract val layoutId : Int
-    abstract var rootId : Int
+    abstract val layoutId: Int
+    abstract var rootId: Int
 
 
     abstract fun onActivityCreated(savedInstanceState: Bundle?)
@@ -22,6 +22,8 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
 
     private var baseFragment: Fragment? = null
 
+    private var currentRequestCode: Int = -1
+    private var currentResultReciever: NavigationContract.ActivityResultReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
 
     override fun requestAttachBaseScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        supportFragmentManager.inTransaction{
+        supportFragmentManager.inTransaction {
             replace(rootId, fragment)
         }
         baseFragment = fragment
@@ -51,6 +53,7 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
             add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
+
     override fun requestSlideRightScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
             setCustomAnimations(R.anim.pop_enter, R.anim.pop_exit, R.anim.enter, R.anim.exit)
@@ -60,7 +63,12 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
 
     override fun requestFadeInScreen(fragment: NavigationContract.NavigationFragment) {
         supportFragmentManager.inTransaction {
-            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+            setCustomAnimations(
+                android.R.anim.fade_in,
+                android.R.anim.fade_out,
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
             add(rootId, fragment).addToBackStack(fragment.fragmentName)
         }
     }
@@ -87,12 +95,20 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
         beginTransaction().func().commit()
     }
 
-    override fun startActivityForResult(intent: Intent) {
-        startActivityForResult(intent)
+    override fun requestActivityForResult(
+        resultReceiver: NavigationContract.ActivityResultReceiver,
+        intent: Intent,
+        requestCode: Int
+    ) {
+        this.currentResultReciever = resultReceiver
+        this.currentRequestCode = requestCode
+        startActivityForResult(intent, requestCode)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        (currentFragment as? NavigationContract.ActivityResultReceiver)?.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == currentRequestCode) {
+            currentResultReciever?.onReceiveActivityResult(requestCode, resultCode, data)
+        }
     }
 }

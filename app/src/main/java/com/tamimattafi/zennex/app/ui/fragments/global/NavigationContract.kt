@@ -1,7 +1,6 @@
-package com.tamimattafi.zennex.app.ui.global
+package com.tamimattafi.zennex.app.ui.fragments.global
 
 import android.content.Intent
-import com.tamimattafi.zennex.utils.AppUtils
 import com.tamimattafi.zennex.utils.KeyboardUtils
 import javax.inject.Inject
 
@@ -15,15 +14,15 @@ interface NavigationContract {
         fun requestFadeInScreen(fragment: NavigationFragment)
         fun requestAttachScreen(fragment: NavigationFragment)
         fun requestBackPress()
-        fun startActivityForResult(intent : Intent)
+        fun requestActivityForResult(resultReceiver: ActivityResultReceiver, intent: Intent, requestCode: Int)
     }
 
     abstract class NavigationFragment : BaseFragment() {
 
         @Inject
-        lateinit var navigationManager : NavigationManager
+        lateinit var navigationManager: NavigationManager
 
-        abstract var fragmentName : String
+        abstract var fragmentName: String
 
         override fun onDestroyView() {
             super.onDestroyView()
@@ -32,7 +31,7 @@ interface NavigationContract {
     }
 
     interface BackPressController {
-        fun onBackPressed() : Boolean
+        fun onBackPressed(): Boolean
     }
 
     interface SelectionListener {
@@ -40,7 +39,7 @@ interface NavigationContract {
     }
 
     interface ActivityResultReceiver {
-        fun onActivityResult(requestCode : Int, resultCode : Int, data: Intent?)
+        fun onReceiveActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     }
 
 

@@ -8,9 +8,9 @@ import com.tamimattafi.zennex.app.ui.custom.dialogs.base.SelectionDialogContract
 import com.tamimattafi.zennex.app.ui.custom.dialogs.model.MenuItemData
 import com.tamimattafi.zennex.app.ui.custom.dialogs.sub.MenuBottomSelectionDialog
 import com.tamimattafi.zennex.app.ui.custom.holders.Actions
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import com.tamimattafi.zennex.app.ui.fragments.main.list.add.AddFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.edit.EditFragment
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
 import com.tamimattafi.zennex.utils.AppUtils
 import kotlinx.android.synthetic.main.fragment_recycler.*
 import kotlinx.android.synthetic.main.toolbar_list.*
@@ -79,7 +79,7 @@ class ListFragment : NavigationContract.NavigationFragment(), ListContract.View 
     }
 
     override fun showError(message: String) {
-        AppUtils.showSnackBar(view!!, message)
+        AppUtils.showToast(appContext, message)
     }
 
 }

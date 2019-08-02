@@ -5,7 +5,7 @@ import android.view.View
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerController
 import com.tamimattafi.zennex.app.ui.custom.holders.Actions
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import com.tamimattafi.zennex.utils.AppUtils
 import kotlinx.android.synthetic.main.fragment_recycler.*
 import kotlinx.android.synthetic.main.fragment_recycler_refresher.*
@@ -54,7 +54,7 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
 
     override fun showError(message: String) {
         setRefreshing(false)
-        AppUtils.showSnackBar(view!!, message)
+        AppUtils.showToast(appContext, message)
     }
 
     override fun setRefreshing(refreshing: Boolean) {

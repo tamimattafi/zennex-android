@@ -22,5 +22,6 @@ interface ParsingContract {
         fun setDescription(description: String)
         fun setDate(date: String)
         fun setRatings(ratings: String)
+        fun setNegativeRatings(negative: Boolean)
     }
 }

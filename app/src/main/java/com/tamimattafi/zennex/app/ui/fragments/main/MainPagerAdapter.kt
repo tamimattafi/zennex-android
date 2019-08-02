@@ -3,11 +3,11 @@ package com.tamimattafi.zennex.app.ui.fragments.main
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import com.tamimattafi.zennex.app.ui.fragments.main.list.ListFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.map.MapFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.parsing.ParsingFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.scaling.ScalingFragment
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
 import javax.inject.Inject
 
 class MainPagerAdapter @Inject constructor(fragmentManager: FragmentManager)

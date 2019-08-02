@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              android:padding="16dp"
               android:layout_width="match_parent"
+              android:gravity="center"
               android:layout_height="match_parent">
+
+    <TextView
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/colorGrayDark"
+            android:padding="16dp"
+            android:text="@string/select_an_image_to_scale"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_collections"
+            app:iconGravity="textStart"
+            android:id="@+id/gallery"
+            android:text="@string/select_from_gallery"
+            style="@style/MaterialButtonRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton
+            app:icon="@drawable/ic_camera"
+            app:iconGravity="textStart"
+            android:id="@+id/camera"
+            android:text="@string/take_new_photo"
+            style="@style/MaterialButtonAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

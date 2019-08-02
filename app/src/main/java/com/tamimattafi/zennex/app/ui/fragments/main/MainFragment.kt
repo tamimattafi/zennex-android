@@ -2,11 +2,9 @@ package com.tamimattafi.zennex.app.ui.fragments.main
 
 import android.os.Bundle
 import android.view.View
-
 import com.tamimattafi.zennex.R
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.lang.NullPointerException
 import javax.inject.Inject
 
 class MainFragment : NavigationContract.NavigationFragment() {

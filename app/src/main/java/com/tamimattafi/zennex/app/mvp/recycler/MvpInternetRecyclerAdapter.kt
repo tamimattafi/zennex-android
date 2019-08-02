@@ -54,9 +54,11 @@ abstract class MvpInternetRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (dataCount > 0 && position == dataCount + headersCount + footersCount && networkError) {
-            ITEM_LOADING_ERROR
-        } else super.getItemViewType(position)
+        return when {
+            dataCount == 0 && networkError -> ITEM_NO_DATA
+            dataCount > 0 && position == dataCount + headersCount + footersCount && networkError -> ITEM_LOADING_ERROR
+            else -> super.getItemViewType(position)
+        }
     }
 
 }

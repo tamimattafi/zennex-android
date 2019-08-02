@@ -24,13 +24,13 @@ abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
                         isLoading = true
                         dataList.addAll(ArrayList(it))
                         setDataCount(dataList.size)
-                        allData = true
+                        allData = it.size < paginationSize
                         isLoading = false
                         view.setRefreshing(false)
                     }
 
                     onFailure = {
-                        (this as? MvpRecyclerContract.InternetRecyclerAdapter<HOLDER>)?.networkError = true
+                        (recycler as? MvpRecyclerContract.InternetRecyclerAdapter<HOLDER>)?.networkError = true
                         isLoading = false
                         setDataCount(dataList.size)
                         view.showError(it)

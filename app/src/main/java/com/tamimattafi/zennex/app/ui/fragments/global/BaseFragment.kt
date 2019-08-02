@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.app.ui.global
+package com.tamimattafi.zennex.app.ui.fragments.global
 
 import android.content.Context
 import android.os.Bundle
@@ -15,7 +15,7 @@ abstract class BaseFragment : DaggerFragment() {
     abstract val layoutId: Int
 
     @Inject
-    lateinit var appContext : Context
+    lateinit var appContext: Context
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(layoutId, container, false)

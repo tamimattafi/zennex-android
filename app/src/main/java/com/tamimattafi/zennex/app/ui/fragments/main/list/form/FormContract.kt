@@ -1,6 +1,6 @@
 package com.tamimattafi.zennex.app.ui.fragments.main.list.form
 
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 
 interface FormContract {
 

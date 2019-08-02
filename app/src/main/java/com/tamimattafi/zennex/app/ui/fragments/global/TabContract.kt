@@ -1,4 +1,4 @@
-package com.tamimattafi.zennex.app.ui.global
+package com.tamimattafi.zennex.app.ui.fragments.global
 
 interface TabContract {
 

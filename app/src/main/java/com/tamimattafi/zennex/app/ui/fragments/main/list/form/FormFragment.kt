@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.dialogs.specific.ConfirmationDialog
-import com.tamimattafi.zennex.app.ui.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import com.tamimattafi.zennex.utils.AppUtils
 import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.android.synthetic.main.toolbar_edit.*

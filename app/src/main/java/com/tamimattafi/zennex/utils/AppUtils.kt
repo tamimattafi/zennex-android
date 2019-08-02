@@ -6,10 +6,12 @@ import android.content.Context
 import android.content.Context.ACTIVITY_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
-import android.provider.Settings
+import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.Toast
@@ -105,14 +107,14 @@ object AppUtils {
     const val PERMISSION_REQUESTING = 2
     const val REQUEST_CODE = 4
 
-    fun Activity.isPermissionGranted(permission: String): Int {
+    fun isPermissionGranted(context: Activity, permission: String): Int {
         return if (ContextCompat.checkSelfPermission(
-                this,
+                context,
                 permission
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
+                    context,
                     permission
                 )
 
@@ -120,7 +122,7 @@ object AppUtils {
                 PERMISSION_DENIED
             } else {
                 ActivityCompat.requestPermissions(
-                    this,
+                    context,
                     arrayOf(permission),
                     REQUEST_CODE
                 )
@@ -131,10 +133,12 @@ object AppUtils {
         }
     }
 
-    fun Context.openSettingsPage() {
-        startActivity(Intent().apply {
-            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            data = Uri.fromParts("package", packageName, null)
-        })
+    private fun uriToBitmap(context: Context, uri: Uri): Bitmap {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, uri))
+        } else {
+            MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
+        }
+
     }
 }

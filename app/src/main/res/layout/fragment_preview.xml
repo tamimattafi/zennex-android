@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:focusable="true"
+        android:clickable="true"
+        android:background="@color/colorForeground"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_preview"/>
+
+    <com.tamimattafi.zennex.app.ui.custom.views.ZoomImageView
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/app_name"
+            android:id="@+id/image"
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</RelativeLayout>

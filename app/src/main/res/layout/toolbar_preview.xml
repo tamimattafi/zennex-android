@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorForeground"
+        android:overScrollMode="always"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.tamimattafi.zennex.app.ui.custom.views.BaseToolbar
+            android:id="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <ImageButton
+                    android:tint="@color/colorGrayDark"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_back"
+                    android:id="@+id/back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+            <TextView
+                    android:textColor="@color/colorGrayDark"
+                    android:id="@+id/title"
+                    android:padding="16dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="@string/preview"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/back"
+                    android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </com.tamimattafi.zennex.app.ui.custom.views.BaseToolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
