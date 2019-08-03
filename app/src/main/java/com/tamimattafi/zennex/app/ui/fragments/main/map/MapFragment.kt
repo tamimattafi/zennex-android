@@ -34,8 +34,7 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
                     setCameraPositionListener { longitude, latitude ->
                         with(location) {
                             visibility = View.VISIBLE
-                            text = appContext.resources.getString(R.string.location) +
-                                    " ${latitude.substring(0, 6)}, ${longitude.substring(0, 6)}"
+                            text = appContext.resources.getString(R.string.location) + "$latitude, $longitude"
                         }
                     }
                     setUpMap()

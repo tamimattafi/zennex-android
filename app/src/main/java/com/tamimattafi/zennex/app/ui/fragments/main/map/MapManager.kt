@@ -9,6 +9,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.tamimattafi.zennex.utils.AppUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 
@@ -42,6 +44,7 @@ class MapManager @Inject constructor(val activity: Activity) {
     }
 
     fun setUpMap() {
+
         mapFragment.getMapAsync { map ->
             this.map = map
             map.apply {
@@ -54,11 +57,14 @@ class MapManager @Inject constructor(val activity: Activity) {
                 ) {
                     checkPermissions()
                 } else {
+                    val df = DecimalFormat("#.##").apply {
+                        roundingMode = RoundingMode.CEILING
+                    }
                     setOnCameraMoveListener {
                         with(cameraPosition.target) {
                             cameraPositionListener?.invoke(
-                                longitude.toString(),
-                                latitude.toString()
+                                df.format(longitude),
+                                df.format(latitude)
                             )
                         }
                     }
