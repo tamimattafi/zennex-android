@@ -1,5 +1,6 @@
 package com.tamimattafi.zennex.app.mvp.recycler
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,12 +8,16 @@ import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolder
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolderList
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.UnbindableHolder
+import javax.inject.Inject
 
 abstract class MvpLocalRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
     open val presenter: MvpRecyclerContract.Presenter<HOLDER>,
     val listener: MvpRecyclerContract.Listener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     MvpRecyclerContract.RecyclerAdapter<HOLDER> {
+
+    @Inject
+    lateinit var activity: Activity
 
     protected var dataCount : Int = 0
 
@@ -78,8 +83,8 @@ abstract class MvpLocalRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
 
     open fun getNoDataHolder(parent: ViewGroup, type: Int): RecyclerView.ViewHolder {
         return EmptyHolder(
-            EmptyHolderList.getItem(parent.context, type),
-            LayoutInflater.from(parent.context).inflate(
+            EmptyHolderList.getItem(activity, type),
+            LayoutInflater.from(activity).inflate(
                 R.layout.item_view_holder_empty,
                 parent,
                 false
@@ -88,7 +93,7 @@ abstract class MvpLocalRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        with(LayoutInflater.from(parent.context)) {
+        with(LayoutInflater.from(activity)) {
             return when (viewType) {
                 ITEM_MAIN -> getItemHolder(parent)
                 ITEM_NO_DATA -> getNoDataHolder(parent, getNoDataHolderType())

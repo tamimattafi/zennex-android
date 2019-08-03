@@ -2,7 +2,7 @@ package com.tamimattafi.zennex.app.ui.fragments.main.map
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
+import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.GoogleMap
@@ -12,7 +12,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import javax.inject.Inject
 
 
-class MapManager @Inject constructor(val context: Context) {
+class MapManager @Inject constructor(val activity: Activity) {
 
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var map: GoogleMap
@@ -48,7 +48,7 @@ class MapManager @Inject constructor(val context: Context) {
                 mapType = GoogleMap.MAP_TYPE_NORMAL
                 clear()
                 if (ContextCompat.checkSelfPermission(
-                        context,
+                        activity,
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
@@ -76,8 +76,8 @@ class MapManager @Inject constructor(val context: Context) {
     }
 
 
-    fun hasPermissions(): Boolean = AppUtils.isPermissionGranted(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-            && AppUtils.isPermissionGranted(context, Manifest.permission.ACCESS_FINE_LOCATION)
+    fun hasPermissions(): Boolean = AppUtils.isPermissionGranted(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+            && AppUtils.isPermissionGranted(activity, Manifest.permission.ACCESS_FINE_LOCATION)
 
 
     fun addPermissionListener(onGrant: (() -> Unit)? = null, onDenied: (() -> Unit)? = null) {

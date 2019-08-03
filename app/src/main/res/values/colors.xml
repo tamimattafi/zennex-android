@@ -8,6 +8,7 @@
     <color name="colorBackgroundDark">#F3F0ED</color>
     <color name="colorForeground">#FFFFFF</color>
     <color name="colorGrayLight">#868686</color>
+    <color name="colorGrayLighter">#C9C9C9</color>
     <color name="transparentBlack">#25000000</color>
     <color name="transparentWhite">#96FFFFFF</color>
     <color name="transparentBlack70">#B3000000</color>

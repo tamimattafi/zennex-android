@@ -67,7 +67,7 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
 
         permission.visibility = View.VISIBLE
         image.setImageResource(R.drawable.ic_placeholder_map)
-        with(appContext.resources) {
+        with(appActivity.resources) {
             label.text = getString(R.string.permission_required)
             description.text = getString(R.string.permission_must_be_granted)
             action.apply {

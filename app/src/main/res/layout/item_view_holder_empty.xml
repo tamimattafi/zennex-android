@@ -15,6 +15,7 @@
             android:layout_height="100dp"
             android:contentDescription="@string/app_name"/>
     <TextView
+            android:gravity="center"
             android:id="@+id/label"
             android:textColor="@color/colorGrayDark"
             android:padding="20dp"

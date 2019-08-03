@@ -7,7 +7,7 @@ import com.tamimattafi.zennex.app.ApplicationPreferences
 import com.tamimattafi.zennex.app.ui.custom.dialogs.base.SelectionDialogContract
 import com.tamimattafi.zennex.app.ui.custom.dialogs.sub.StringSelectionDialog
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
-import kotlinx.android.synthetic.main.fragment_language.*
+import kotlinx.android.synthetic.main.fragment_form_layout.*
 import kotlinx.android.synthetic.main.toolbar_language.*
 import javax.inject.Inject
 
@@ -28,7 +28,7 @@ class LanguageFragment : NavigationContract.NavigationFragment() {
                 object : SelectionDialogContract.ListDialogActionListener<String> {
                     override fun onItemSelected(item: String) {
                         selectedLanguage = item
-                        language.setText(item)
+                        field.setText(item)
                         dismiss()
                     }
                 }
@@ -39,7 +39,8 @@ class LanguageFragment : NavigationContract.NavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         selectedLanguage = applicationPreferences.getLanguage()
-        with(language) {
+        with(field) {
+            isFocusableInTouchMode = false
             setText(selectedLanguage)
             setOnClickListener {
                 languageDialog.show()

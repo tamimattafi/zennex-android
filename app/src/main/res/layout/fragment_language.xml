@@ -6,63 +6,11 @@
         android:layout_height="match_parent"
         android:background="@color/colorForeground">
 
-    <include layout="@layout/toolbar_edit"/>
-    <androidx.core.widget.NestedScrollView
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    <include layout="@layout/toolbar_language"/>
+    <include
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout
-                    app:hintTextColor="@color/colorGrayDark"
-                    android:layout_width="match_parent"
-                    android:id="@+id/nameLayout"
-                    android:layout_height="wrap_content">
-                <com.tamimattafi.zennex.app.ui.custom.views.FormEditText
-                        android:text="@string/default_language"
-                        android:focusableInTouchMode="false"
-                        android:background="@drawable/background_edit_text_field"
-                        android:id="@+id/language"
-                        android:textColorHint="@color/colorGrayDark"
-                        android:hint="@string/language"
-                        android:textColor="@android:color/black"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-            </com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout>
-            <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-            >
-                <com.google.android.material.button.MaterialButton
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        app:icon="@drawable/ic_cancel"
-                        app:iconGravity="textStart"
-                        android:id="@+id/discard"
-                        android:text="@string/discard"
-                        style="@style/MaterialButtonRed"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"/>
-                <com.google.android.material.button.MaterialButton
-                        android:layout_marginStart="8dp"
-                        app:icon="@drawable/ic_save"
-                        android:layout_weight="1"
-                        app:iconGravity="textStart"
-                        android:id="@+id/confirm"
-                        android:text="@string/save"
-                        style="@style/MaterialButtonAccent"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            layout="@layout/fragment_form_layout"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

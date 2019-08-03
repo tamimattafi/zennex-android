@@ -9,7 +9,7 @@ object LanguageValues {
 
     fun getLanguagesMenu(): ArrayList<String> = LIST ?: ArrayList<String>().apply {
         add(ApplicationPreferences.RU)
-        add(ApplicationPreferences.DEFAULT)
+        add(ApplicationPreferences.EN)
     }.also { LIST = it }
 
 }

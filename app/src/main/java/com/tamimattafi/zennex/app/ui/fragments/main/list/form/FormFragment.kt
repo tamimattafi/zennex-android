@@ -6,7 +6,7 @@ import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.dialogs.specific.ConfirmationDialog
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import com.tamimattafi.zennex.utils.AppUtils
-import kotlinx.android.synthetic.main.fragment_form.*
+import kotlinx.android.synthetic.main.fragment_form_layout.*
 import kotlinx.android.synthetic.main.toolbar_edit.*
 
 abstract class FormFragment : NavigationContract.NavigationFragment(), FormContract.View {
@@ -33,18 +33,18 @@ abstract class FormFragment : NavigationContract.NavigationFragment(), FormContr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        title.text = appContext.resources.getString(getFromTitleId())
+        title.text = appActivity.resources.getString(getFromTitleId())
         back.setOnClickListener { navigationManager.requestBackPress() }
         save.setOnClickListener {
-            if (name.text.isNullOrEmpty()) {
-                nameLayout.error = appContext.resources.getString(R.string.this_field_is_required)
+            if (field.text.isNullOrEmpty()) {
+                fieldLayout.error = appActivity.resources.getString(R.string.this_field_is_required)
             } else {
-                nameLayout.apply {
+                fieldLayout.apply {
                     error = null
                     isErrorEnabled = false
                 }
 
-                onFormSave(name.text.toString().trim())
+                onFormSave(field.text.toString().trim())
             }
         }
 

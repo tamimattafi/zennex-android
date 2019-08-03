@@ -19,7 +19,7 @@
             android:layout_height="48dp"/>
     <TextView
             android:textColor="@color/colorGrayDark"
-            android:id="@+id/name"
+            android:id="@+id/field"
             android:layout_toStartOf="@id/checkbox"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -45,7 +45,7 @@
             android:textColor="@color/colorGrayLight"
             android:gravity="end"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/name"
+            android:layout_below="@id/field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

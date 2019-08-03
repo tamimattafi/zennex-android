@@ -10,9 +10,8 @@ object ListValues {
     const val EDIT_ITEM = 0
     const val DELETE_ITEM = 1
 
-    var LIST: ArrayList<MenuItemData>? = null
 
-    fun getContextMenu(context: Context): ArrayList<MenuItemData> = LIST ?: ArrayList<MenuItemData>().apply {
+    fun getContextMenu(context: Context): ArrayList<MenuItemData> = ArrayList<MenuItemData>().apply {
         add(
             MenuItemData(
                 id = EDIT_ITEM,
@@ -28,6 +27,5 @@ object ListValues {
                 drawable = R.drawable.ic_delete
             )
         )
-    }.also { LIST = it }
-
+    }
 }

@@ -48,7 +48,7 @@ class ListItemHolder(itemView : View) : MvpSimpleHolder(itemView) ,
     }
 
     override fun setName(name: String) {
-        itemView.name.text = name
+        itemView.field.text = name
     }
 
     override fun getId(): Int? = objectId

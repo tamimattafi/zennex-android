@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.fragments.main.list.form.FormFragment
-import kotlinx.android.synthetic.main.fragment_form.*
+import kotlinx.android.synthetic.main.fragment_form_layout.*
 import javax.inject.Inject
 
 class EditFragment(override val itemName: String, override val itemId: Int) : FormFragment(), EditContract.View {
@@ -27,12 +27,12 @@ class EditFragment(override val itemName: String, override val itemId: Int) : Fo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        name.setText(itemName)
+        field.setText(itemName)
     }
 
     override fun getFromTitleId(): Int = R.string.edit_item
 
-    override fun canGoBack(): Boolean = name.text.toString() == itemName
+    override fun canGoBack(): Boolean = field.text.toString() == itemName
 
     override fun onDestroyView() {
         presenter.onDestroyView()

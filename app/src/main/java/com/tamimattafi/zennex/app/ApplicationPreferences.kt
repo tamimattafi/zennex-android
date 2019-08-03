@@ -22,6 +22,7 @@ class ApplicationPreferences @Inject constructor(context: Context) {
 
     companion object {
         const val RU = "ru"
+        const val EN = "en"
         val DEFAULT: String
             get() = Locale.getDefault().language
     }
