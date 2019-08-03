@@ -1,5 +1,6 @@
 package com.tamimattafi.zennex.app.ui.fragments.global
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,9 @@ abstract class BaseFragment : DaggerFragment() {
 
     @Inject
     lateinit var appContext: Context
+
+    @Inject
+    lateinit var appActivity: Activity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(layoutId, container, false)

@@ -36,11 +36,11 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
     }
 
     override fun onHolderClick(listPosition: Int, adapterPosition: Int, itemId: Int?) {
-        AppUtils.showToast(appContext, "Item $itemId click !")
+        AppUtils.showToast(appContext, itemId.toString())
     }
 
     override fun onHolderLongClick(listPosition: Int, adapterPosition: Int, itemId: Int?) {
-        AppUtils.showToast(appContext, "Item $itemId Long click !")
+        AppUtils.showToast(appContext, itemId.toString())
     }
 
     override fun onHolderAction(listPosition: Int, adapterPosition: Int, action: Int, itemId: Int?) {

@@ -41,6 +41,4 @@ interface NavigationContract {
     interface ActivityResultReceiver {
         fun onReceiveActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     }
-
-
 }

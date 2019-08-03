@@ -33,4 +33,10 @@
     <string name="select_from_gallery">Select from gallery</string>
     <string name="take_new_photo">Take new photo</string>
     <string name="preview">Preview</string>
+    <string name="location">Location:</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="permission_must_be_granted">Permissions must be granted in order to use this feature</string>
+    <string name="grant_permission">Grant Permissions</string>
+    <string name="permissions_are_required">Permissions are required!</string>
+    <string name="permission_was_denied_try_again">Permission was denied, please try again!</string>
 </resources>

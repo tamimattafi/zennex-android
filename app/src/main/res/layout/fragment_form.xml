@@ -17,16 +17,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout
-                    app:hintTextColor="@color/colorGrayLight"
+                    app:hintTextColor="@color/colorGrayDark"
                     android:layout_width="match_parent"
                     android:id="@+id/nameLayout"
                     android:layout_height="wrap_content">
                 <com.tamimattafi.zennex.app.ui.custom.views.FormEditText
                         android:background="@drawable/background_edit_text_field"
                         android:id="@+id/name"
-                        android:textColorHint="@color/colorGrayLight"
+                        android:textColorHint="@color/colorGrayDark"
                         android:hint="@string/name"
-                        android:textColor="@color/colorGrayDark"
+                        android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
             </com.tamimattafi.zennex.app.ui.custom.views.FormInputLayout>

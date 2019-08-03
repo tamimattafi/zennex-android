@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "96306629310",
+    "firebase_url": "https://zennex-248616.firebaseio.com",
+    "project_id": "zennex-248616",
+    "storage_bucket": "zennex-248616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96306629310:android:2fb47b7d4a054c47",
+        "android_client_info": {
+          "package_name": "com.tamimattafi.zennex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96306629310-2qahj20l0i24rgf5g3s9pahthdbtdato.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUenvwTTSBXjma45TZy8X7Cf0w6sb4gCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96306629310-2qahj20l0i24rgf5g3s9pahthdbtdato.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

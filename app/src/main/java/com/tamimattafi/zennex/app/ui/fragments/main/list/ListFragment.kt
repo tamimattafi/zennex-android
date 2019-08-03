@@ -36,12 +36,12 @@ class ListFragment : NavigationContract.NavigationFragment(), ListContract.View 
         super.onViewCreated(view, savedInstanceState)
         adapter.controller = MvpRecyclerController(recycler)
         add.setOnClickListener {
-            navigationManager.requestAttachScreen(AddFragment())
+            navigationManager.requestSlideLeftScreen(AddFragment())
         }
     }
 
     override fun onHolderClick(listPosition: Int, adapterPosition: Int, itemId: Int?) {
-        navigationManager.requestAttachScreen(
+        navigationManager.requestSlideRightScreen(
             EditFragment(presenter.getItemName(listPosition), itemId ?: return)
         )
     }
