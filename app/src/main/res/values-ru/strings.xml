@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Zennex</string>
+    <string name="something_went_wrong">Что-то пошло не так. Пожалуйста, попытайтесь еще раз</string>
+    <string name="list">Список</string>
+    <string name="scaling">Пересчет</string>
+    <string name="parsing">Анализ</string>
+    <string name="map">Карта</string>
+    <string name="save">Сохранить</string>
+    <string name="no_connection">Нет соединения</string>
+    <string name="device_not_connected">Ваше устройство не подключено к Интернету</string>
+    <string name="refresh">Oбновление</string>
+    <string name="create">Создайте</string>
+    <string name="no_data">Нет данных</string>
+    <string name="no_data_yet">Кажется, у вас еще нет данных, вы хотите их создать?</string>
+    <string name="something_went_wrong_internet_connection">Что-то пошло не так, пожалуйста, проверьте подключение к
+        интернету и попробуй еще раз
+    </string>
+    <string name="try_again">Попробуйте снова</string>
+    <string name="add_item">Добавьте предмет</string>
+    <string name="edit_item">Изменить элемент</string>
+    <string name="discard">Oтбрасывать</string>
+    <string name="name">Название</string>
+    <string name="this_field_is_required">Это поле обязательно к заполнению</string>
+    <string name="close">Закрыть</string>
+    <string name="cancel">Oтменить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="cancel_action">Отменить действие</string>
+    <string name="do_you_really_want_to_go_back">Вы действительно хотите вернуться?</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+    <string name="select_an_image_to_scale">Выберите изображение для масштабирования</string>
+    <string name="select_from_gallery">Выбрать из галереи</string>
+    <string name="take_new_photo">Сделай новое фото</string>
+    <string name="preview">Предварительный просмотр</string>
+    <string name="location">Место:</string>
+    <string name="permission_required">Требуется разрешение</string>
+    <string name="permission_must_be_granted">Разрешения должны быть предоставлены для использования этой функции
+    </string>
+    <string name="grant_permission">Предоставить разрешения</string>
+    <string name="permissions_are_required">Разрешения обязательны!</string>
+    <string name="permission_was_denied_try_again">В доступе отказано, пожалуйста, попробуйте еще раз!</string>
+    <string name="language">Язык</string>
+    <string name="default_language">Язык по умолчанию</string>
+</resources>

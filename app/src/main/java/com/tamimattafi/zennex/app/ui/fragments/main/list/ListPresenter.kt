@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 @ListScope
 class ListPresenter @Inject constructor(
-    override val view : ListContract.View,
+    override var view: ListContract.View?,
     repository: ListContract.Repository
-) : MvpLocalRecyclerPresenter<ListItem, ListContract.View, ListContract.ListItemHolder>(view, repository),
+) : MvpLocalRecyclerPresenter<ListItem, ListContract.View?, ListContract.ListItemHolder>(view, repository),
     ListContract.Presenter {
 
     override fun bindViewHolder(holder: ListContract.ListItemHolder) {
@@ -41,7 +41,7 @@ class ListPresenter @Inject constructor(
             completable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError {
-                    view.showError(it.localizedMessage ?: it.toString())
+                    view?.showError(it.localizedMessage ?: it.toString())
                 }
                 .subscribe()
         }

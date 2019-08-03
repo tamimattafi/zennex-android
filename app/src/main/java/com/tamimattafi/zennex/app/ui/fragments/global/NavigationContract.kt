@@ -15,6 +15,7 @@ interface NavigationContract {
         fun requestAttachScreen(fragment: NavigationFragment)
         fun requestBackPress()
         fun requestActivityForResult(resultReceiver: ActivityResultReceiver, intent: Intent, requestCode: Int)
+        fun requestRestart()
     }
 
     abstract class NavigationFragment : BaseFragment() {

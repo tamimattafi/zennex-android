@@ -21,4 +21,14 @@ class AddFragment : FormFragment(), AddContract.View {
 
     override fun canGoBack(): Boolean = name.text.isNullOrEmpty()
 
+    override fun onDestroyView() {
+        presenter.onDestroyView()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
 }

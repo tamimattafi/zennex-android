@@ -6,7 +6,7 @@ import com.tamimattafi.zennex.repository.global.RepositoryContract
 abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
         VIEW : MvpRecyclerContract.RefreshableView<HOLDER>,
         HOLDER : MvpRecyclerContract.Holder>(
-    override val view: VIEW,
+    override var view: VIEW?,
     protected val repository: RepositoryContract.InternetBase<T>
 ) : BasePresenter<VIEW>(view), MvpRecyclerContract.InternetPresenter<HOLDER> {
 
@@ -26,14 +26,14 @@ abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
                         setDataCount(dataList.size)
                         allData = it.size < paginationSize
                         isLoading = false
-                        view.setRefreshing(false)
+                        view?.setRefreshing(false)
                     }
 
                     onFailure = {
                         (recycler as? MvpRecyclerContract.InternetRecyclerAdapter<HOLDER>)?.networkError = true
                         isLoading = false
                         setDataCount(dataList.size)
-                        view.showError(it)
+                        view?.showError(it)
                     }
 
                 }.getData()

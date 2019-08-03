@@ -16,7 +16,9 @@ class SimpleStringItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     }
 
     override fun bindListeners(listener: SelectionDialogContract.ListDialogActionListener<String>) {
-        listener.onItemSelected(item)
+        itemView.setOnClickListener {
+            listener.onItemSelected(item)
+        }
     }
 
 

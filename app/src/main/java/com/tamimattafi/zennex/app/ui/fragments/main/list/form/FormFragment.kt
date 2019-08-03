@@ -20,7 +20,7 @@ abstract class FormFragment : NavigationContract.NavigationFragment(), FormContr
     abstract fun canGoBack(): Boolean
 
     private val confirmationDialog by lazy {
-        with(context!!) {
+        with(appActivity) {
             ConfirmationDialog(this).apply {
                 title = resources.getString(R.string.cancel_action)
                 hint = resources.getString(R.string.do_you_really_want_to_go_back)

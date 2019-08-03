@@ -1,7 +1,7 @@
 package com.tamimattafi.zennex.app.di.modules
 
 import android.app.Activity
-import com.tamimattafi.zennex.MainActivity
+import com.tamimattafi.zennex.app.MainActivity
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
 import dagger.Binds
 import dagger.Module

@@ -1,6 +1,7 @@
 package com.tamimattafi.zennex.app.mvp.recycler
 
 import androidx.recyclerview.widget.RecyclerView
+import com.tamimattafi.zennex.app.mvp.BaseContract
 
 
 interface MvpRecyclerContract {
@@ -51,7 +52,7 @@ interface MvpRecyclerContract {
         fun getObjectId() : ID
     }
 
-    interface Presenter<HOLDER : Holder> {
+    interface Presenter<HOLDER : Holder> : BaseContract.Presenter {
         fun bindViewHolder(holder: HOLDER)
         fun loadMoreRecyclerData(recycler : RecyclerAdapter<HOLDER>)
     }

@@ -1,0 +1,66 @@
+package com.tamimattafi.zennex.app.ui.fragments.main.language
+
+import android.os.Bundle
+import android.view.View
+import com.tamimattafi.zennex.R
+import com.tamimattafi.zennex.app.ApplicationPreferences
+import com.tamimattafi.zennex.app.ui.custom.dialogs.base.SelectionDialogContract
+import com.tamimattafi.zennex.app.ui.custom.dialogs.sub.StringSelectionDialog
+import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
+import kotlinx.android.synthetic.main.fragment_language.*
+import kotlinx.android.synthetic.main.toolbar_language.*
+import javax.inject.Inject
+
+class LanguageFragment : NavigationContract.NavigationFragment() {
+
+    override var fragmentName: String = "fragment-language"
+    override val layoutId: Int = R.layout.fragment_language
+
+    @Inject
+    lateinit var applicationPreferences: ApplicationPreferences
+
+    lateinit var selectedLanguage: String
+
+    private val languageDialog: StringSelectionDialog by lazy {
+        StringSelectionDialog(activity).apply {
+            bindData(
+                LanguageValues.getLanguagesMenu(),
+                object : SelectionDialogContract.ListDialogActionListener<String> {
+                    override fun onItemSelected(item: String) {
+                        selectedLanguage = item
+                        language.setText(item)
+                        dismiss()
+                    }
+                }
+            )
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        selectedLanguage = applicationPreferences.getLanguage()
+        with(language) {
+            setText(selectedLanguage)
+            setOnClickListener {
+                languageDialog.show()
+            }
+        }
+
+        confirm.setOnClickListener {
+            if (selectedLanguage != applicationPreferences.getLanguage()) {
+                applicationPreferences.setLanguage(selectedLanguage)
+                navigationManager.requestRestart()
+            } else {
+                navigationManager.requestBackPress()
+            }
+        }
+
+        save.setOnClickListener { confirm.performClick() }
+
+        discard.setOnClickListener {
+            navigationManager.requestBackPress()
+        }
+
+        back.setOnClickListener { discard.performClick() }
+    }
+}

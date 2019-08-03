@@ -12,17 +12,17 @@ import javax.inject.Inject
 class EditFragment(override val itemName: String, override val itemId: Int) : FormFragment(), EditContract.View {
 
     @Inject
-    lateinit var presneter: EditContract.Presenter
+    lateinit var presenter: EditContract.Presenter
 
     override var fragmentName: String = "fragment-edit"
 
     override fun onFormSave(name: String) {
-        presneter.saveItem(name)
+        presenter.saveItem(name)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        presneter.setItemId(itemId)
+        presenter.setItemId(itemId)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,5 +33,15 @@ class EditFragment(override val itemName: String, override val itemId: Int) : Fo
     override fun getFromTitleId(): Int = R.string.edit_item
 
     override fun canGoBack(): Boolean = name.text.toString() == itemName
+
+    override fun onDestroyView() {
+        presenter.onDestroyView()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
 
 }

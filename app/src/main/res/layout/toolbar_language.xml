@@ -7,22 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <com.tamimattafi.zennex.app.ui.custom.views.BaseToolbar
+            android:id="@+id/toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize">
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <ImageButton
+                    android:tint="@color/colorGrayDark"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_back"
+                    android:id="@+id/back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
             <TextView
                     android:textColor="@color/colorGrayDark"
                     android:id="@+id/title"
                     android:padding="16dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="@string/parsing"
+                    android:text="@string/language"
                     android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/back"
+                    android:layout_toStartOf="@id/save"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/save"
+                    android:layout_toRightOf="@id/back"/>
 
             <ImageButton
                     android:tint="@color/colorGrayDark"
@@ -30,8 +44,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_refresh"
-                    android:id="@+id/refresh"
+                    android:src="@drawable/ic_save"
+                    android:id="@+id/save"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentRight="true"/>

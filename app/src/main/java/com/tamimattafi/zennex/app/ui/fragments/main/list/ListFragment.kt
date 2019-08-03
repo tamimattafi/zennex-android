@@ -9,6 +9,7 @@ import com.tamimattafi.zennex.app.ui.custom.dialogs.model.MenuItemData
 import com.tamimattafi.zennex.app.ui.custom.dialogs.sub.MenuBottomSelectionDialog
 import com.tamimattafi.zennex.app.ui.custom.holders.Actions
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
+import com.tamimattafi.zennex.app.ui.fragments.main.language.LanguageFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.add.AddFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.edit.EditFragment
 import com.tamimattafi.zennex.utils.AppUtils
@@ -37,6 +38,10 @@ class ListFragment : NavigationContract.NavigationFragment(), ListContract.View 
         adapter.controller = MvpRecyclerController(recycler)
         add.setOnClickListener {
             navigationManager.requestSlideLeftScreen(AddFragment())
+        }
+
+        language.setOnClickListener {
+            navigationManager.requestSlideRightScreen(LanguageFragment())
         }
     }
 
@@ -76,6 +81,16 @@ class ListFragment : NavigationContract.NavigationFragment(), ListContract.View 
                 )
             }.show()
         }
+    }
+
+    override fun onDestroyView() {
+        presenter.onDestroyView()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
     override fun showError(message: String) {

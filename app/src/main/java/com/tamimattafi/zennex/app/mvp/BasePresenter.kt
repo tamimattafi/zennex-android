@@ -1,11 +1,14 @@
 package com.tamimattafi.zennex.app.mvp
 
 
-abstract class BasePresenter<V> protected constructor(open val view: V) {
+abstract class BasePresenter<V> protected constructor(open var view: V?) : BaseContract.Presenter {
 
     protected var isViewDestroyed = false
 
-    open fun onDestroyView() { isViewDestroyed = true }
-    open fun onDestroy() {}
+    override fun onDestroyView() {
+        this.view = null
+    }
+
+    override fun onDestroy() {}
 
 }

@@ -6,6 +6,7 @@
         android:orientation="vertical">
     <View style="@style/HorizontalDivider"/>
     <TextView
+            android:textColor="@color/colorGrayDark"
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="wrap_content"

@@ -111,4 +111,9 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
             currentResultReciever?.onReceiveActivityResult(requestCode, resultCode, data)
         }
     }
+
+    override fun requestRestart() {
+        finish()
+        startActivity(intent)
+    }
 }

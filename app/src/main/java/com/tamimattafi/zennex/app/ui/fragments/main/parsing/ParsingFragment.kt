@@ -67,5 +67,15 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
         }
     }
 
+    override fun onDestroyView() {
+        presenter.onDestroyView()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
 
 }

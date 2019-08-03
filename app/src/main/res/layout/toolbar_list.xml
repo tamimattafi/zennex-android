@@ -13,7 +13,17 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <ImageButton
+                    android:tint="@color/colorGrayDark"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_language"
+                    android:id="@+id/language"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
             <TextView
+                    android:layout_toEndOf="@id/language"
                     android:textColor="@color/colorGrayDark"
                     android:id="@+id/title"
                     android:padding="16dp"
@@ -24,7 +34,8 @@
                     android:layout_toStartOf="@id/add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/add"/>
+                    android:layout_toLeftOf="@id/add"
+                    android:layout_toRightOf="@id/language"/>
 
             <ImageButton
                     android:tint="@color/colorGrayDark"

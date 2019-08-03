@@ -8,6 +8,7 @@ import com.tamimattafi.zennex.app.di.modules.fragments.scaling.ScalingModule
 import com.tamimattafi.zennex.app.di.scopes.ListScope
 import com.tamimattafi.zennex.app.di.scopes.ParsingScope
 import com.tamimattafi.zennex.app.ui.fragments.main.MainFragment
+import com.tamimattafi.zennex.app.ui.fragments.main.language.LanguageFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.ListFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.add.AddFragment
 import com.tamimattafi.zennex.app.ui.fragments.main.list.edit.EditFragment
@@ -45,6 +46,9 @@ abstract class MainFragmentModule {
 
     @ContributesAndroidInjector(modules = [MainModule::class])
     abstract fun providePreviewFragment(): PreviewFragment
+
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    abstract fun provideLanguageFragment(): LanguageFragment
 
     @ParsingScope
     @ContributesAndroidInjector(modules = [MainModule::class, ParsingModule::class])

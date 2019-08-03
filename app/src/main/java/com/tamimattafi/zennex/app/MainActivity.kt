@@ -1,6 +1,8 @@
-package com.tamimattafi.zennex
+package com.tamimattafi.zennex.app
 
+import android.content.Context
 import android.os.Bundle
+import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationActivity
 import com.tamimattafi.zennex.app.ui.fragments.main.MainFragment
 
@@ -15,5 +17,14 @@ class MainActivity : NavigationActivity() {
 
     override fun applyNewStyle() {
         theme.applyStyle(R.style.AppTheme, true)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(
+            ContextWrapper.wrap(
+                newBase,
+                ApplicationPreferences(newBase).getLanguage()
+            )
+        )
     }
 }

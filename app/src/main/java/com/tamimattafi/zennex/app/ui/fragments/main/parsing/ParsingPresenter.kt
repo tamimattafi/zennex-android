@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @ParsingScope
 class ParsingPresenter @Inject constructor(
-    override val view: ParsingContract.View,
+    override var view: ParsingContract.View?,
     repository: ParsingContract.Repository
 ) : MvpInternetRecyclerPresenter<Quote, ParsingContract.View, ParsingContract.QuoteHolder>(view, repository),
     ParsingContract.Presenter {

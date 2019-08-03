@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Zennex</string>
     <string name="something_went_wrong">Something went wrong, please try again</string>
-    <string name="unknown">Unknown</string>
     <string name="list">List</string>
     <string name="scaling">Scaling</string>
     <string name="parsing">Parsing</string>
@@ -39,4 +38,6 @@
     <string name="grant_permission">Grant Permissions</string>
     <string name="permissions_are_required">Permissions are required!</string>
     <string name="permission_was_denied_try_again">Permission was denied, please try again!</string>
+    <string name="language">Language</string>
+    <string name="default_language">Default Language</string>
 </resources>
