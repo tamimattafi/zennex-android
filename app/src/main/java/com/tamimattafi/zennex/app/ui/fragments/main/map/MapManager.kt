@@ -44,7 +44,6 @@ class MapManager @Inject constructor(val activity: Activity) {
     }
 
     fun setUpMap() {
-
         mapFragment.getMapAsync { map ->
             this.map = map
             map.apply {
@@ -76,7 +75,6 @@ class MapManager @Inject constructor(val activity: Activity) {
                         isMyLocationButtonEnabled = true
                     }
                 }
-
             }
         }
     }

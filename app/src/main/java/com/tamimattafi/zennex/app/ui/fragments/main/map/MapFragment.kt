@@ -3,8 +3,6 @@ package com.tamimattafi.zennex.app.ui.fragments.main.map
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.fragments.global.NavigationContract
@@ -14,7 +12,7 @@ import kotlinx.android.synthetic.main.item_view_holder_empty.*
 import javax.inject.Inject
 
 
-class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback {
+class MapFragment : NavigationContract.NavigationFragment() {
 
     override var fragmentName: String = "fragment-map"
     override val layoutId: Int = R.layout.fragment_map
@@ -25,8 +23,7 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)?.let {
+        (childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment?)?.let {
             with(mapManager) {
                 attachMapFragment(it)
                 if (mapManager.hasPermissions()) {
@@ -34,7 +31,7 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
                     setCameraPositionListener { longitude, latitude ->
                         with(location) {
                             visibility = View.VISIBLE
-                            text = appContext.resources.getString(R.string.location) + "$latitude, $longitude"
+                            text = appContext.resources.getString(R.string.location) + " $latitude, $longitude"
                         }
                     }
                     setUpMap()
@@ -63,7 +60,6 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
     }
 
     private fun setUpPermissionLayout() {
-
         permission.visibility = View.VISIBLE
         image.setImageResource(R.drawable.ic_placeholder_map)
         with(appActivity.resources) {
@@ -76,10 +72,5 @@ class MapFragment : NavigationContract.NavigationFragment(), OnMapReadyCallback 
                 }
             }
         }
-
-    }
-
-    override fun onMapReady(map: GoogleMap?) {
-
     }
 }
