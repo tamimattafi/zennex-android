@@ -28,42 +28,4 @@ interface ListContract {
         fun setChecked(isChecked : Boolean)
     }
 
-
-    interface MyView {
-        fun setText(string: String)
-    }
-
-    class MyViewImp : MyView {
-
-        lateinit var presenter: MyPresenter
-        var name: String = ""
-
-        override fun setText(string: String) {
-            name = string
-        }
-
-        //
-
-        fun click() {
-            presenter.getText()
-        }
-
-    }
-
-    interface MyPresenter {
-        fun getText()
-    }
-
-
-    class MyPresenterImp(private val view: MyView) : MyPresenter {
-        override fun getText() {
-            //..
-            //..
-
-            view.setText("dsfsdfsdf")
-        }
-
-    }
-
-
 }
