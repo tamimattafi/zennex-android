@@ -19,8 +19,17 @@ class PreviewFragment : NavigationContract.NavigationFragment(), PreviewContract
         super.onViewCreated(view, savedInstanceState)
 
         image.setImageURI(imagePath)
+
         back.setOnClickListener {
             navigationManager.requestBackPress()
+        }
+
+        zoomIn.setOnClickListener {
+            image.zoomIn()
+        }
+
+        zoomOut.setOnClickListener {
+            image.zoomOut()
         }
 
     }

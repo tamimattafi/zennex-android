@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolder
 import com.tamimattafi.zennex.app.ui.custom.holders.empty.EmptyHolderList
-import com.tamimattafi.zennex.utils.PhoneUtils
 
 abstract class MvpInternetRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
     override val presenter: MvpRecyclerContract.InternetPresenter<HOLDER>,
@@ -36,7 +35,7 @@ abstract class MvpInternetRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         with(LayoutInflater.from(parent.context)) {
             return when {
-                viewType == ITEM_NO_DATA && (!PhoneUtils.isConnected(parent.context) || networkError) -> getNoDataHolder(
+                viewType == ITEM_NO_DATA && networkError -> getNoDataHolder(
                     parent,
                     EmptyHolderList.NO_CONNECTION
                 )

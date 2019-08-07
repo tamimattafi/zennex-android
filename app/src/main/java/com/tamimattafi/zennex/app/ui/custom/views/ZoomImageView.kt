@@ -8,6 +8,7 @@ import android.widget.ImageView
 import kotlin.math.atan2
 import kotlin.math.sqrt
 
+
 class ZoomImageView(context: Context, attributeSet: AttributeSet) : ImageView(context, attributeSet) {
 
     private var isZoomAndRotate: Boolean = false
@@ -31,7 +32,6 @@ class ZoomImageView(context: Context, attributeSet: AttributeSet) : ImageView(co
 
     init {
         setOnTouchListener { _, event ->
-            this.bringToFront()
             viewTransformation(event)
             true
         }
@@ -125,6 +125,16 @@ class ZoomImageView(context: Context, attributeSet: AttributeSet) : ImageView(co
         val x = event.getX(0) + event.getX(1)
         val y = event.getY(0) + event.getY(1)
         point.set(x / 2, y / 2)
+    }
+
+    fun zoomIn() {
+        scaleX *= 1.2f
+        scaleY *= 1.2f
+    }
+
+    fun zoomOut() {
+        scaleX *= 0.8f
+        scaleY *= 0.8f
     }
 
 

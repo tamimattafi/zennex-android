@@ -10,7 +10,6 @@ import javax.inject.Inject
 class ListRepository @Inject constructor(private val listItemDao: ListItemDao) :
     ListContract.Repository() {
 
-
     override fun get(id: Int) {
         ListItemAsync(listItemDao).apply {
             onComplete = {
@@ -47,7 +46,5 @@ class ListRepository @Inject constructor(private val listItemDao: ListItemDao) :
             }
         }.execute()
     }
-
-
 
 }

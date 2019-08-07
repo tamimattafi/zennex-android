@@ -12,6 +12,7 @@ interface MvpRecyclerContract {
         var controller: RecyclerController<HOLDER>?
         fun getViewHolder(listPosition : Int) : HOLDER?
         fun setDataCount(dataCount : Int) : Boolean
+        fun isEmpty(): Boolean
     }
 
     interface InternetRecyclerAdapter<HOLDER : Holder> : RecyclerAdapter<HOLDER>, Refresher {

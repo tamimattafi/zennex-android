@@ -1,6 +1,7 @@
 package com.tamimattafi.zennex.app.ui.fragments.global
 
 import android.content.Intent
+import android.util.Log
 import com.tamimattafi.zennex.utils.KeyboardUtils
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ interface NavigationContract {
         fun requestRestart()
     }
 
-    abstract class NavigationFragment : BaseFragment() {
+    abstract class NavigationFragment : BaseFragment(), SelectionListener {
 
         @Inject
         lateinit var navigationManager: NavigationManager
@@ -28,6 +29,10 @@ interface NavigationContract {
         override fun onDestroyView() {
             super.onDestroyView()
             KeyboardUtils.hide(context!!)
+        }
+
+        override fun onSelected() {
+            Log.i(fragmentName, "Selected")
         }
     }
 

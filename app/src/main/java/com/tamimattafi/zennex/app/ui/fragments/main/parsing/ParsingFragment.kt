@@ -1,6 +1,7 @@
 package com.tamimattafi.zennex.app.ui.fragments.main.parsing
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.tamimattafi.zennex.R
 import com.tamimattafi.zennex.app.mvp.recycler.MvpRecyclerController
@@ -25,7 +26,6 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter.controller = MvpRecyclerController(recycler)
         refresh.setOnClickListener {
             adapter.refresh()
         }
@@ -33,6 +33,8 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
         refresher.setOnRefreshListener {
             refresh.performClick()
         }
+
+        adapter.controller = MvpRecyclerController(recycler)
     }
 
     override fun onHolderClick(listPosition: Int, adapterPosition: Int, itemId: Int?) {
@@ -58,13 +60,8 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
     }
 
     override fun setRefreshing(refreshing: Boolean) {
-        with(refresher) {
-            if (isRefreshing != refreshing) {
-                isRefreshing = refreshing
-
-                recycler.visibility = if (refreshing) View.INVISIBLE else View.VISIBLE
-            }
-        }
+        refresher.isRefreshing = refreshing
+        recycler.visibility = if (refreshing) View.INVISIBLE else View.VISIBLE
     }
 
     override fun onDestroyView() {
@@ -75,6 +72,15 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onSelected() {
+        super.onSelected()
+        try {
+            setRefreshing(adapter.isEmpty())
+        } catch (e: Exception) {
+            Log.e(fragmentName, "View is not initialized yet")
+        }
     }
 
 

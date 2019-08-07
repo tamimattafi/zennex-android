@@ -23,7 +23,7 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
     private var baseFragment: Fragment? = null
 
     private var currentRequestCode: Int = -1
-    private var currentResultReciever: NavigationContract.ActivityResultReceiver? = null
+    private var currentResultReceiver: NavigationContract.ActivityResultReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,7 +100,7 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
         intent: Intent,
         requestCode: Int
     ) {
-        this.currentResultReciever = resultReceiver
+        this.currentResultReceiver = resultReceiver
         this.currentRequestCode = requestCode
         startActivityForResult(intent, requestCode)
     }
@@ -108,7 +108,7 @@ abstract class NavigationActivity : DaggerAppCompatActivity(), NavigationContrac
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == currentRequestCode) {
-            currentResultReciever?.onReceiveActivityResult(requestCode, resultCode, data)
+            currentResultReceiver?.onReceiveActivityResult(requestCode, resultCode, data)
         }
     }
 

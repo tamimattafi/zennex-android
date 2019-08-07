@@ -17,13 +17,11 @@ class MainFragment : NavigationContract.NavigationFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) {
-            setUpViewPager(adapter)
-            setUpNavigation()
-        }
+        setUpViewPager()
+        setUpNavigation()
     }
 
-    private fun setUpViewPager(adapter: MainPagerAdapter) {
+    private fun setUpViewPager() {
         pager.apply {
 
             setPageSelectionListener { position ->
@@ -34,9 +32,11 @@ class MainFragment : NavigationContract.NavigationFragment() {
                     3 -> R.id.nav_map
                     else -> throw NullPointerException("Item not found for ViewPager page with the position: $position")
                 }
+
+                (this@MainFragment.adapter.getItem(position) as? NavigationContract.SelectionListener)?.onSelected()
             }
 
-            this.adapter = adapter
+            this.adapter = this@MainFragment.adapter
         }
     }
 

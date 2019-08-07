@@ -8,7 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 abstract class FormPresenter constructor(
-    override var view: FormContract.View?,
+    override var view: FormContract.View,
     val repository: RepositoryContract.LocalBase<ListItem>
 ) : BasePresenter<FormContract.View>(view), FormContract.Presenter {
 
@@ -22,9 +22,9 @@ abstract class FormPresenter constructor(
                 completable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        view?.dismiss()
+                        view.dismiss()
                     }, {
-                        view?.showError(it.localizedMessage ?: it.toString())
+                        view.showError(it.localizedMessage ?: it.toString())
                     })
             }
         }

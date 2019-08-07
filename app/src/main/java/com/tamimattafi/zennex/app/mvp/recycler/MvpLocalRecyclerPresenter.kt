@@ -8,9 +8,9 @@ import io.reactivex.schedulers.Schedulers
 
 abstract class MvpLocalRecyclerPresenter<
         T : MvpRecyclerContract.Object<Int>,
-        VIEW : MvpRecyclerContract.View<HOLDER>?,
+        VIEW : MvpRecyclerContract.View<HOLDER>,
         HOLDER : MvpRecyclerContract.Holder>(
-    override var view: VIEW?,
+    override var view: VIEW,
     protected val repository: RepositoryContract.LocalBase<T>
 ) : BasePresenter<VIEW>(view), MvpRecyclerContract.Presenter<HOLDER> {
 
@@ -34,7 +34,7 @@ abstract class MvpLocalRecyclerPresenter<
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .doOnError {
                                     isLoading = false
-                                    view?.showError(it.localizedMessage ?: it.toString())
+                                    view.showError(it.localizedMessage ?: it.toString())
 
                                 }.doOnNext { list ->
                                     isLoading = true
@@ -54,9 +54,14 @@ abstract class MvpLocalRecyclerPresenter<
         }
     }
 
+    override fun onDestroyView() {
+        repository.stopListening()
+        super.onDestroyView()
+    }
+
     override fun onDestroy() {
         dataList.clear()
-        repository.stopListening()
+        repository.destroy()
     }
 
 }

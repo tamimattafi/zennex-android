@@ -118,4 +118,6 @@ abstract class MvpLocalRecyclerAdapter<HOLDER : MvpRecyclerContract.Holder>(
         }
     }
 
+    override fun isEmpty(): Boolean = dataCount == 0
+
 }

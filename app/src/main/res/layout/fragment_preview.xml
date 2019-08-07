@@ -13,9 +13,38 @@
 
     <com.tamimattafi.zennex.app.ui.custom.views.ZoomImageView
             android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
             android:id="@+id/image"
             android:layout_below="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:background="@color/colorBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+        <ImageButton
+                android:tint="@color/colorGrayDark"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_zoom_in"
+                android:id="@+id/zoomIn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+        <ImageButton
+                android:tint="@color/colorGrayDark"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_zoom_out"
+                android:id="@+id/zoomOut"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+    </LinearLayout>
 </RelativeLayout>

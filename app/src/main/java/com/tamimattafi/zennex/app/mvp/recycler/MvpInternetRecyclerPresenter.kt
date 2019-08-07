@@ -6,15 +6,15 @@ import com.tamimattafi.zennex.repository.global.RepositoryContract
 abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
         VIEW : MvpRecyclerContract.RefreshableView<HOLDER>,
         HOLDER : MvpRecyclerContract.Holder>(
-    override var view: VIEW?,
+    override var view: VIEW,
     protected val repository: RepositoryContract.InternetBase<T>
 ) : BasePresenter<VIEW>(view), MvpRecyclerContract.InternetPresenter<HOLDER> {
 
     protected var dataList: ArrayList<T> = ArrayList()
 
     override fun loadMoreRecyclerData(recycler: MvpRecyclerContract.RecyclerAdapter<HOLDER>) {
-        with(recycler) {
-            if (!allData && !isLoading) {
+        with(recycler as MvpRecyclerContract.InternetRecyclerAdapter<HOLDER>) {
+            if (!allData && !isLoading && !networkError) {
 
                 isLoading = true
 
@@ -26,14 +26,14 @@ abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
                         setDataCount(dataList.size)
                         allData = it.size < paginationSize
                         isLoading = false
-                        view?.setRefreshing(false)
+                        view.setRefreshing(false)
                     }
 
                     onFailure = {
-                        (recycler as? MvpRecyclerContract.InternetRecyclerAdapter<HOLDER>)?.networkError = true
+                        networkError = true
                         isLoading = false
                         setDataCount(dataList.size)
-                        view?.showError(it)
+                        view.showError(it)
                     }
 
                 }.getData()
@@ -46,11 +46,17 @@ abstract class MvpInternetRecyclerPresenter<T : MvpRecyclerContract.Object<Int>,
     override fun refresh(recycler: MvpRecyclerContract.RecyclerAdapter<HOLDER>) {
         dataList.clear()
         repository.refresh()
+        view.setRefreshing(true)
         loadMoreRecyclerData(recycler)
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         repository.stopListening()
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        repository.destroy()
         dataList.clear()
     }
 

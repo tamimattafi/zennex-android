@@ -7,12 +7,17 @@ import io.reactivex.Maybe
 
 interface RepositoryContract {
 
-    interface LocalBase<T> : LocalCallBack<T> {
+
+    interface Base<T> {
+        fun getData()
+        fun destroy()
+    }
+
+    interface LocalBase<T> : Base<T>, LocalCallBack<T> {
         fun get(id : Int)
         fun set(item : T)
         fun delete(item: T)
         fun update(item: T)
-        fun getData()
 
         abstract class LocalRepository<T> : LocalBase<T> {
             override var onListReadComplete: ((it: Flowable<List<T>>) -> Unit)? = null
@@ -25,15 +30,18 @@ interface RepositoryContract {
                 onWriteComplete = null
                 onReadComplete = null
             }
+
+            override fun destroy() {
+                stopListening()
+            }
         }
 
     }
 
-    interface InternetBase<T> : InternetCallBack<T> {
+    interface InternetBase<T> : Base<T>, InternetCallBack<T> {
         var paginationSize: Int
         var currentCount: Int
         fun refresh()
-        fun getData()
 
         abstract class InternetRepository<T> : InternetBase<T> {
             override var onListReadComplete: ((it: List<T>) -> Unit)? = null
@@ -42,6 +50,11 @@ interface RepositoryContract {
 
             override fun stopListening() {
                 onListReadComplete = null
+            }
+
+            override fun destroy() {
+                stopListening()
+                currentCount = 0
             }
         }
     }

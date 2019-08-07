@@ -34,6 +34,7 @@ class ScalingFragment : NavigationContract.NavigationFragment(), NavigationContr
         camera.setOnClickListener {
             cameraManager.openCamera(REQUEST_TAKE_PHOTO)
         }
+
     }
 
     override fun onReceiveActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
