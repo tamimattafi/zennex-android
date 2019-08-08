@@ -62,6 +62,7 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
     override fun setRefreshing(refreshing: Boolean) {
         refresher.isRefreshing = refreshing
         recycler.visibility = if (refreshing) View.INVISIBLE else View.VISIBLE
+        refresh.isEnabled = !refreshing
     }
 
     override fun onDestroyView() {
@@ -77,7 +78,7 @@ class ParsingFragment : NavigationContract.NavigationFragment(), ParsingContract
     override fun onSelected() {
         super.onSelected()
         try {
-            setRefreshing(adapter.isEmpty())
+            setRefreshing(with(adapter) { (isEmpty() && !networkError) })
         } catch (e: Exception) {
             Log.e(fragmentName, "View is not initialized yet")
         }
